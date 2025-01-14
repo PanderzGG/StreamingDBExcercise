@@ -1,0 +1,26 @@
+<Alben>
+  <Album>
+    <AlbumID>1</AlbumID>
+    <AlbumName>To Pimp a Butterfly</AlbumName>
+    <Erscheinungsjahr>2015</Erscheinungsjahr>
+    <AlbumCover>topimpabutterfly.jpg</AlbumCover>
+    <ArtistName>Kendrick Lamar</ArtistName>
+    <LabelName>Top Dawg Entertainment</LabelName>
+  </Album>
+  <Album>
+    <AlbumID>2</AlbumID>
+    <AlbumName>The Marshall Mathers LP 2</AlbumName>
+    <Erscheinungsjahr>2013</Erscheinungsjahr>
+    <AlbumCover>marshallmatherslp2.jpg</AlbumCover>
+    <ArtistName>Eminem</ArtistName>
+    <LabelName>Shady Records</LabelName>
+  </Album>
+  <Album>
+    <AlbumID>3</AlbumID>
+    <AlbumName>Master of Puppets</AlbumName>
+    <Erscheinungsjahr>1986</Erscheinungsjahr>
+    <AlbumCover>masterofpuppets.jpg</AlbumCover>
+    <ArtistName>Metallica</ArtistName>
+    <LabelName>Blackened Recordings</LabelName>
+  </Album>
+</Alben>
