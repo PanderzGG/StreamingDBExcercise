@@ -50,6 +50,7 @@
             labelAlben = new System.Windows.Forms.Label();
             labelArtist = new System.Windows.Forms.Label();
             tabPageAlbumDetail = new TabPage();
+            textBoxAlbumInfo = new TextBox();
             labelAlbumGenre = new System.Windows.Forms.Label();
             dataGridViewAlbumSongList = new DataGridView();
             albumSongNummer = new DataGridViewTextBoxColumn();
@@ -61,13 +62,21 @@
             pictureBoxAlbum = new PictureBox();
             labelAlbumArtist = new System.Windows.Forms.Label();
             tabPageArtistDetail = new TabPage();
+            textBoxArtistInfo = new TextBox();
+            pictureBoxArtist = new PictureBox();
+            labelArtistArtist = new System.Windows.Forms.Label();
             tabPageLabelDetail = new TabPage();
+            textBoxLabelInfo = new TextBox();
+            labelLabelLabel = new System.Windows.Forms.Label();
             tabControlOverview.SuspendLayout();
             tabPageOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAlbumTrackList).BeginInit();
             tabPageAlbumDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAlbumSongList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbum).BeginInit();
+            tabPageArtistDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxArtist).BeginInit();
+            tabPageLabelDetail.SuspendLayout();
             SuspendLayout();
             // 
             // tabControlOverview
@@ -290,6 +299,7 @@
             // 
             // tabPageAlbumDetail
             // 
+            tabPageAlbumDetail.Controls.Add(textBoxAlbumInfo);
             tabPageAlbumDetail.Controls.Add(labelAlbumGenre);
             tabPageAlbumDetail.Controls.Add(dataGridViewAlbumSongList);
             tabPageAlbumDetail.Controls.Add(labelAlbumAlbum);
@@ -303,23 +313,39 @@
             tabPageAlbumDetail.Text = "Album";
             tabPageAlbumDetail.UseVisualStyleBackColor = true;
             // 
+            // textBoxAlbumInfo
+            // 
+            textBoxAlbumInfo.BackColor = SystemColors.Control;
+            textBoxAlbumInfo.Location = new Point(331, 93);
+            textBoxAlbumInfo.Multiline = true;
+            textBoxAlbumInfo.Name = "textBoxAlbumInfo";
+            textBoxAlbumInfo.ReadOnly = true;
+            textBoxAlbumInfo.Size = new Size(385, 102);
+            textBoxAlbumInfo.TabIndex = 5;
+            // 
             // labelAlbumGenre
             // 
+            labelAlbumGenre.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelAlbumGenre.AutoSize = true;
             labelAlbumGenre.Font = new Font("Segoe UI", 9F);
-            labelAlbumGenre.Location = new Point(30, 122);
+            labelAlbumGenre.Location = new Point(56, 96);
             labelAlbumGenre.Name = "labelAlbumGenre";
-            labelAlbumGenre.Size = new Size(106, 15);
+            labelAlbumGenre.Size = new Size(110, 15);
             labelAlbumGenre.TabIndex = 4;
-            labelAlbumGenre.Text = "Unbekannter Artist";
+            labelAlbumGenre.Text = "Unbekanntes Genre";
             // 
             // dataGridViewAlbumSongList
             // 
+            dataGridViewAlbumSongList.AllowUserToAddRows = false;
+            dataGridViewAlbumSongList.AllowUserToDeleteRows = false;
+            dataGridViewAlbumSongList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewAlbumSongList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewAlbumSongList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewAlbumSongList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAlbumSongList.Columns.AddRange(new DataGridViewColumn[] { albumSongNummer, albumSongTitel, albumSongDauer, albumSongBPM, albumSongFormat });
             dataGridViewAlbumSongList.Location = new Point(331, 217);
             dataGridViewAlbumSongList.Name = "dataGridViewAlbumSongList";
-            dataGridViewAlbumSongList.Size = new Size(550, 445);
+            dataGridViewAlbumSongList.Size = new Size(550, 270);
             dataGridViewAlbumSongList.TabIndex = 3;
             // 
             // albumSongNummer
@@ -357,7 +383,7 @@
             labelAlbumAlbum.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelAlbumAlbum.AutoSize = true;
             labelAlbumAlbum.Font = new Font("Segoe UI", 27F);
-            labelAlbumAlbum.Location = new Point(30, 24);
+            labelAlbumAlbum.Location = new Point(6, 7);
             labelAlbumAlbum.Name = "labelAlbumAlbum";
             labelAlbumAlbum.Size = new Size(341, 48);
             labelAlbumAlbum.TabIndex = 2;
@@ -365,18 +391,21 @@
             // 
             // pictureBoxAlbum
             // 
+            pictureBoxAlbum.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBoxAlbum.Location = new Point(6, 217);
             pictureBoxAlbum.Name = "pictureBoxAlbum";
             pictureBoxAlbum.Size = new Size(319, 270);
+            pictureBoxAlbum.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAlbum.TabIndex = 1;
             pictureBoxAlbum.TabStop = false;
             pictureBoxAlbum.WaitOnLoad = true;
             // 
             // labelAlbumArtist
             // 
+            labelAlbumArtist.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelAlbumArtist.AutoSize = true;
             labelAlbumArtist.Font = new Font("Segoe UI", 18F);
-            labelAlbumArtist.Location = new Point(30, 72);
+            labelAlbumArtist.Location = new Point(35, 55);
             labelAlbumArtist.Name = "labelAlbumArtist";
             labelAlbumArtist.Size = new Size(214, 32);
             labelAlbumArtist.TabIndex = 0;
@@ -384,6 +413,9 @@
             // 
             // tabPageArtistDetail
             // 
+            tabPageArtistDetail.Controls.Add(textBoxArtistInfo);
+            tabPageArtistDetail.Controls.Add(pictureBoxArtist);
+            tabPageArtistDetail.Controls.Add(labelArtistArtist);
             tabPageArtistDetail.Location = new Point(4, 24);
             tabPageArtistDetail.Name = "tabPageArtistDetail";
             tabPageArtistDetail.Padding = new Padding(3);
@@ -392,8 +424,38 @@
             tabPageArtistDetail.Text = "Artist";
             tabPageArtistDetail.UseVisualStyleBackColor = true;
             // 
+            // textBoxArtistInfo
+            // 
+            textBoxArtistInfo.Location = new Point(88, 147);
+            textBoxArtistInfo.Multiline = true;
+            textBoxArtistInfo.Name = "textBoxArtistInfo";
+            textBoxArtistInfo.ReadOnly = true;
+            textBoxArtistInfo.Size = new Size(332, 191);
+            textBoxArtistInfo.TabIndex = 2;
+            // 
+            // pictureBoxArtist
+            // 
+            pictureBoxArtist.Location = new Point(435, 48);
+            pictureBoxArtist.Name = "pictureBoxArtist";
+            pictureBoxArtist.Size = new Size(382, 416);
+            pictureBoxArtist.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxArtist.TabIndex = 1;
+            pictureBoxArtist.TabStop = false;
+            // 
+            // labelArtistArtist
+            // 
+            labelArtistArtist.AutoSize = true;
+            labelArtistArtist.Font = new Font("Segoe UI", 27F);
+            labelArtistArtist.Location = new Point(88, 48);
+            labelArtistArtist.Name = "labelArtistArtist";
+            labelArtistArtist.Size = new Size(115, 48);
+            labelArtistArtist.TabIndex = 0;
+            labelArtistArtist.Text = "label1";
+            // 
             // tabPageLabelDetail
             // 
+            tabPageLabelDetail.Controls.Add(textBoxLabelInfo);
+            tabPageLabelDetail.Controls.Add(labelLabelLabel);
             tabPageLabelDetail.Location = new Point(4, 24);
             tabPageLabelDetail.Name = "tabPageLabelDetail";
             tabPageLabelDetail.Padding = new Padding(3);
@@ -401,6 +463,25 @@
             tabPageLabelDetail.TabIndex = 3;
             tabPageLabelDetail.Text = "Label";
             tabPageLabelDetail.UseVisualStyleBackColor = true;
+            // 
+            // textBoxLabelInfo
+            // 
+            textBoxLabelInfo.Location = new Point(25, 116);
+            textBoxLabelInfo.Multiline = true;
+            textBoxLabelInfo.Name = "textBoxLabelInfo";
+            textBoxLabelInfo.ReadOnly = true;
+            textBoxLabelInfo.Size = new Size(427, 214);
+            textBoxLabelInfo.TabIndex = 1;
+            // 
+            // labelLabelLabel
+            // 
+            labelLabelLabel.AutoSize = true;
+            labelLabelLabel.Font = new Font("Segoe UI", 27F);
+            labelLabelLabel.Location = new Point(25, 20);
+            labelLabelLabel.Name = "labelLabelLabel";
+            labelLabelLabel.Size = new Size(115, 48);
+            labelLabelLabel.TabIndex = 0;
+            labelLabelLabel.Text = "label1";
             // 
             // StreamDB
             // 
@@ -418,6 +499,11 @@
             tabPageAlbumDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAlbumSongList).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbum).EndInit();
+            tabPageArtistDetail.ResumeLayout(false);
+            tabPageArtistDetail.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxArtist).EndInit();
+            tabPageLabelDetail.ResumeLayout(false);
+            tabPageLabelDetail.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -457,5 +543,11 @@
         private DataGridViewTextBoxColumn albumSongBPM;
         private DataGridViewTextBoxColumn albumSongFormat;
         private System.Windows.Forms.Label labelAlbumGenre;
+        private TextBox textBoxAlbumInfo;
+        private TextBox textBoxArtistInfo;
+        private PictureBox pictureBoxArtist;
+        private System.Windows.Forms.Label labelArtistArtist;
+        private System.Windows.Forms.Label labelLabelLabel;
+        private TextBox textBoxLabelInfo;
     }
 }

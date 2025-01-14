@@ -63,34 +63,38 @@ use streamingdb;
 -- Künstler
 INSERT INTO artist (ArtistName, ArtistInformation, ArtistImage)
 VALUES
-('The Rolling Stones', 'Eine britische Rockband, die 1962 gegründet wurde.', 'rolling_stones.jpg'),
-('Beyoncé', 'Eine US-amerikanische Sängerin, die in den 2000er Jahren bekannt wurde.', 'beyonce.jpg'),
-('Eminem', 'Ein US-amerikanischer Rapper, der 1996 mit „Infinite“ debütierte.', 'eminem.jpg'),
-('Daft Punk', 'Ein französisches Musikduo, bekannt für elektronische Musik.', 'daft_punk.jpg'),
-('Adele', 'Eine britische Sängerin, die für ihre kraftvolle Stimme bekannt ist.', 'adele.jpg');
+('The Rolling Stones', 'Eine britische Rockband, die 1962 gegründet wurde.', 'rolling_stones.png'),
+('Beyoncé', 'Eine US-amerikanische Sängerin, die in den 2000er Jahren bekannt wurde.', 'beyonce.png'),
+('Eminem', 'Ein US-amerikanischer Rapper, der 1996 mit „Infinite“ debütierte.', 'eminem.png'),
+('Daft Punk', 'Ein französisches Musikduo, bekannt für elektronische Musik.', 'daft_punk.png'),
+('Adele', 'Eine britische Sängerin, die für ihre kraftvolle Stimme bekannt ist.', 'adele.png'),
+('Kendrick Lamar', 'US-amerikanischer Rapper, Songwriter und Produzent', 'kendrick_lamar.png');
 
 -- Label
 INSERT INTO label (LabelName, LabelInformation, LabelImage)
 VALUES
-('Universal Music', 'Ein internationales Musiklabel.', 'universal_music.jpg'),
-('Sony Music', 'Ein weltweites Musikunternehmen.', 'sony_music.jpg'),
-('Warner Music', 'Eines der größten Musikunternehmen weltweit.', 'warner_music.jpg'),
-('Columbia Records', 'Ein traditionsreiches Label in der Musikindustrie.', 'columbia_records.jpg'),
-('Island Records', 'Ein internationales Label, das Künstler aus verschiedenen Genres unterstützt.', 'island_records.jpg');
+('Universal Music', 'Ein internationales Musiklabel.', 'universal_music.png'),
+('Sony Music', 'Ein weltweites Musikunternehmen.', 'sony_music.png'),
+('Warner Music', 'Eines der größten Musikunternehmen weltweit.', 'warner_music.png'),
+('Columbia Records', 'Ein traditionsreiches Label in der Musikindustrie.', 'columbia_records.png'),
+('Island Records', 'Ein internationales Label, das Künstler aus verschiedenen Genres unterstützt.', 'island_records.png'),
+('Top Dawg Entertainment', 'Independent-Label mit Fokus auf Hip-Hop-Künstler', 'tde_logo.png');
 
 -- Alben
 INSERT INTO album (AlbumName, Erscheinungsjahr, AlbumCover, LabelID, ArtistID)
 VALUES
-('Sticky Fingers', 1971, 'sticky_fingers.jpg', 1, 1),
-('Let It Bleed', 1969, 'let_it_bleed.jpg', 1, 1),
-('Lemonade', 2016, 'lemonade.jpg', 2, 2),
-('Dangerously In Love', 2003, 'dangerously_in_love.jpg', 2, 2),
-('The Marshall Mathers LP', 2000, 'marshall_mathers.jpg', 3, 3),
-('Recovery', 2010, 'recovery.jpg', 3, 3),
-('Discovery', 2001, 'discovery.jpg', 4, 4),
-('Random Access Memories', 2013, 'random_access_memories.jpg', 4, 4),
-('25', 2015, '25.jpg', 5, 5),
-('21', 2011, '21.jpg', 5, 5);
+('Sticky Fingers', 1971, 'sticky_fingers.png', 1, 1),
+('Let It Bleed', 1969, 'let_it_bleed.png', 1, 1),
+('Lemonade', 2016, 'lemonade.png', 2, 2),
+('Dangerously In Love', 2003, 'dangerously_in_love.png', 2, 2),
+('The Marshall Mathers LP', 2000, 'marshall_mathers.png', 3, 3),
+('Recovery', 2010, 'recovery.png', 3, 3),
+('Discovery', 2001, 'discovery.png', 4, 4),
+('Random Access Memories', 2013, 'random_access_memories.png', 4, 4),
+('25', 2015, '25.png', 5, 5),
+('21', 2011, '21.png', 5, 5),
+('GNX', 2024, 'gnx.png', 6, 6);
+
 
 -- Genres
 INSERT INTO genre (GenreName)
@@ -183,6 +187,22 @@ VALUES
 ('Set Fire to the Rain', 5, 10), -- Soul Song
 ('Rumour Has It', 5, 10); -- Soul Song
 
+-- Album: gnx (Kendrick Lamar)
+INSERT INTO song (SongTitel, GenreID, AlbumID)
+VALUES 
+('Wacced Out Murals', 3, 11),
+('Squabble Up', 3, 11),
+('Gloria', 3, 11),
+('Luther', 3, 11),
+('GNX Intro', 3, 11),
+('Cali Sunrise', 3, 11),
+('Ride or Die', 3, 11),
+('Legacy Hustle', 3, 11),
+('Daydreamer', 3, 11),
+('Fire and Fury', 3, 11),
+('Silent Thunder', 3, 11),
+('Victory Lap', 3, 11);
+
 -- Featuring
 -- "Main Artist" an erster Stelle, weitere Künstler als Feature
 -- Für jedes Album der Hauptkünstler mit sich selbst und ggf. anderen Künstlern in der Featuring-Tabelle
@@ -247,56 +267,85 @@ INSERT INTO featuring (SongID, ArtistID) VALUES (38, 5); -- Rolling in the Deep 
 INSERT INTO featuring (SongID, ArtistID) VALUES (39, 5); -- Set Fire to the Rain (Main: Adele)
 INSERT INTO featuring (SongID, ArtistID) VALUES (40, 5); -- Rumour Has It (Main: Adele)
 
--- SongData (überarbeitete Version)
+INSERT INTO featuring (SongID, ArtistID)
+VALUES
+(41, 6), -- Kendrick Lamar für 'Wacced Out Murals'
+(42, 6), -- Kendrick Lamar für 'Squabble Up'
+(43, 6), -- Kendrick Lamar für 'Gloria'
+(44, 6), -- Kendrick Lamar für 'Luther'
+(45, 6), -- Kendrick Lamar für 'GNX Intro'
+(46, 6), -- Kendrick Lamar für 'Cali Sunrise'
+(47, 6), -- Kendrick Lamar für 'Ride or Die'
+(48, 6), -- Kendrick Lamar für 'Legacy Hustle'
+(49, 6), -- Kendrick Lamar für 'Daydreamer'
+(50, 6), -- Kendrick Lamar für 'Fire and Fury'
+(51, 6), -- Kendrick Lamar für 'Silent Thunder'
+(52, 6); -- Kendrick Lamar für 'Victory Lap'
+
+-- SongData (überarbeitet)
 INSERT INTO songData (SongDauer, SongBPM, SongFormat, SongID)
 VALUES
-('3:50', 115, 'MP3', 1),   -- Brown Sugar (Sticky Fingers)
-('4:30', 120, 'MP3', 2),   -- Gimme Shelter (Sticky Fingers)
-('5:10', 125, 'MP3', 3),   -- Wild Horses (Sticky Fingers)
-('5:00', 130, 'MP3', 4),   -- Can't You Hear Me Knocking (Sticky Fingers)
+('00:03:50', 115, 'MP3', 1),   -- Brown Sugar (Sticky Fingers)
+('00:04:30', 120, 'MP3', 2),   -- Gimme Shelter (Sticky Fingers)
+('00:05:10', 125, 'MP3', 3),   -- Wild Horses (Sticky Fingers)
+('00:05:00', 130, 'MP3', 4),   -- Can't You Hear Me Knocking (Sticky Fingers)
 
-('6:00', 110, 'MP3', 5),   -- Gimme Shelter (Let It Bleed)
-('7:00', 115, 'MP3', 6),   -- You Can't Always Get What You Want (Let It Bleed)
-('4:50', 120, 'MP3', 7),   -- Love In Vain (Let It Bleed)
-('6:30', 125, 'MP3', 8),   -- Midnight Rambler (Let It Bleed)
+('00:06:00', 110, 'MP3', 5),   -- Gimme Shelter (Let It Bleed)
+('00:07:00', 115, 'MP3', 6),   -- You Can't Always Get What You Want (Let It Bleed)
+('00:04:50', 120, 'MP3', 7),   -- Love In Vain (Let It Bleed)
+('00:06:30', 125, 'MP3', 8),   -- Midnight Rambler (Let It Bleed)
 
-('4:50', 115, 'MP3', 9),   -- Formation (Lemonade)
-('5:00', 120, 'MP3', 10),  -- Sorry (Lemonade)
-('4:40', 118, 'MP3', 11),  -- Hold Up (Lemonade)
-('5:10', 125, 'MP3', 12),  -- Don't Hurt Yourself (Lemonade)
+('00:04:50', 115, 'MP3', 9),   -- Formation (Lemonade)
+('00:05:00', 120, 'MP3', 10),  -- Sorry (Lemonade)
+('00:04:40', 118, 'MP3', 11),  -- Hold Up (Lemonade)
+('00:05:10', 125, 'MP3', 12),  -- Don't Hurt Yourself (Lemonade)
 
-('5:30', 115, 'MP3', 13),  -- Crazy In Love (Dangerously In Love)
-('5:00', 120, 'MP3', 14),  -- Baby Boy (Dangerously In Love)
-('4:50', 125, 'MP3', 15),  -- Naughty Girl (Dangerously In Love)
-('4:40', 118, 'MP3', 16),  -- Me, Myself and I (Dangerously In Love)
+('00:05:30', 115, 'MP3', 13),  -- Crazy In Love (Dangerously In Love)
+('00:05:00', 120, 'MP3', 14),  -- Baby Boy (Dangerously In Love)
+('00:04:50', 125, 'MP3', 15),  -- Naughty Girl (Dangerously In Love)
+('00:04:40', 118, 'MP3', 16),  -- Me, Myself and I (Dangerously In Love)
 
-('5:30', 128, 'MP3', 17),  -- Lose Yourself (The Marshall Mathers LP)
-('5:00', 120, 'MP3', 18),  -- Cleaning Out My Closet (The Marshall Mathers LP)
-('6:00', 115, 'MP3', 19),  -- Stan (The Marshall Mathers LP)
-('5:10', 130, 'MP3', 20),  -- The Way I Am (The Marshall Mathers LP)
+('00:05:30', 128, 'MP3', 17),  -- Lose Yourself (The Marshall Mathers LP)
+('00:05:00', 120, 'MP3', 18),  -- Cleaning Out My Closet (The Marshall Mathers LP)
+('00:06:00', 115, 'MP3', 19),  -- Stan (The Marshall Mathers LP)
+('00:05:10', 130, 'MP3', 20),  -- The Way I Am (The Marshall Mathers LP)
 
-('4:40', 125, 'MP3', 21),  -- Not Afraid (Recovery)
-('4:30', 120, 'MP3', 22),  -- Love The Way You Lie (Recovery)
-('5:00', 130, 'MP3', 23),  -- No Love (Recovery)
-('5:20', 115, 'MP3', 24),  -- Space Bound (Recovery)
+('00:04:40', 125, 'MP3', 21),  -- Not Afraid (Recovery)
+('00:04:30', 120, 'MP3', 22),  -- Love The Way You Lie (Recovery)
+('00:05:00', 130, 'MP3', 23),  -- No Love (Recovery)
+('00:05:20', 115, 'MP3', 24),  -- Space Bound (Recovery)
 
-('5:20', 118, 'MP3', 25),  -- One More Time (Discovery)
-('4:50', 120, 'MP3', 26),  -- Aerodynamic (Discovery)
-('5:10', 125, 'MP3', 27),  -- Digital Love (Discovery)
-('5:40', 130, 'MP3', 28),  -- Harder, Better, Faster, Stronger (Discovery)
+('00:05:20', 118, 'MP3', 25),  -- One More Time (Discovery)
+('00:04:50', 120, 'MP3', 26),  -- Aerodynamic (Discovery)
+('00:05:10', 125, 'MP3', 27),  -- Digital Love (Discovery)
+('00:05:40', 130, 'MP3', 28),  -- Harder, Better, Faster, Stronger (Discovery)
 
-('6:00', 128, 'MP3', 29),  -- Get Lucky (Random Access Memories)
-('5:30', 115, 'MP3', 30),  -- Instant Crush (Random Access Memories)
-('5:40', 120, 'MP3', 31),  -- Lose Yourself to Dance (Random Access Memories)
-('7:00', 130, 'MP3', 32),  -- Touch (Random Access Memories)
+('00:06:00', 128, 'MP3', 29),  -- Get Lucky (Random Access Memories)
+('00:05:30', 115, 'MP3', 30),  -- Instant Crush (Random Access Memories)
+('00:05:40', 120, 'MP3', 31),  -- Lose Yourself to Dance (Random Access Memories)
+('00:07:00', 130, 'MP3', 32),  -- Touch (Random Access Memories)
 
-('5:20', 115, 'MP3', 33),  -- Hello (25)
-('4:50', 120, 'MP3', 34),  -- When We Were Young (25)
-('3:40', 118, 'MP3', 35),  -- Send My Love (To Your New Lover) (25)
-('4:30', 125, 'MP3', 36),  -- Water Under the Bridge (25)
+('00:05:20', 115, 'MP3', 33),  -- Hello (25)
+('00:04:50', 120, 'MP3', 34),  -- When We Were Young (25)
+('00:03:40', 118, 'MP3', 35),  -- Send My Love (To Your New Lover) (25)
+('00:04:30', 125, 'MP3', 36),  -- Water Under the Bridge (25)
 
-('4:50', 130, 'MP3', 37),  -- Someone Like You (21)
-('5:00', 125, 'MP3', 38),  -- Rolling in the Deep (21)
-('5:10', 120, 'MP3', 39),  -- Set Fire to the Rain (21)
-('4:40', 115, 'MP3', 40);  -- Rumour Has It (21)
+('00:04:50', 130, 'MP3', 37),  -- Someone Like You (21)
+('00:05:00', 125, 'MP3', 38),  -- Rolling in the Deep (21)
+('00:05:10', 120, 'MP3', 39),  -- Set Fire to the Rain (21)
+('00:04:40', 115, 'MP3', 40),
+
+('00:03:45', 120, 'MP3', 41),
+('00:04:10', 130, 'MP3', 42),
+('00:03:50', 125, 'MP3', 43),
+('00:03:30', 115, 'MP3', 44),
+('00:01:20', 0, 'MP3', 45),
+('00:04:00', 118, 'MP3', 46),
+('00:03:55', 122, 'MP3', 47),
+('00:04:05', 125, 'MP3', 48),
+('00:03:40', 110, 'MP3', 49),
+('00:04:15', 128, 'MP3', 50),
+('00:03:35', 115, 'MP3', 51),
+('00:05:00', 132, 'MP3', 52);
+
 

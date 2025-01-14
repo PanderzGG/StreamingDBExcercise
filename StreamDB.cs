@@ -223,26 +223,30 @@ namespace StreamingDB
                 justSwitched = true;
             }
 
-            int selectedTabIndex = tabControlOverview.SelectedIndex;
+            string selectedTab = tabControlOverview.SelectedTab.Name;
 
-            switch (selectedTabIndex)
+            switch (selectedTab)
             {
-                case 0:
+                case "tabPageOverview":
 
                     break;
-                case 1:
+                case "tabPageAlbumDetail":
                     albumAbruf();
                     loadAlbumCover();
                     break;
-                case 2:
-
+                case "tabPageArtistDetail":
+                    artistAbruf();
+                    loadArtistPicture();
+                    break;
+                case "tabPageLabelDetail":
+                    labelAbruf();
                     break;
                 default:
                     break;
             }
         }
 
-
+        #region Abruf Methoden
         private void albumAbruf()
         {
             try
@@ -281,6 +285,41 @@ namespace StreamingDB
             }
         }
 
+        private void artistAbruf()
+        {
+            try
+            {
+                labelArtistArtist.Text = comboBoxArtist.Text;
+
+                string info = artists.Find(x => x.ArtistName == comboBoxArtist.Text).ArtistInfo;
+                textBoxArtistInfo.Text = info;
+                this.ActiveControl = null;
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void labelAbruf()
+        {
+            try
+            {
+                labelLabelLabel.Text = labelLabelWert.Text;
+
+                string info = labels.Find(x => x.LabelName == labelLabelWert.Text).LabelInfo;
+                textBoxLabelInfo.Text = info;
+                this.ActiveControl = null;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Bildaufruf Methoden
         private void loadAlbumCover()
         {
             try
@@ -305,7 +344,6 @@ namespace StreamingDB
                 }
 
                 string imagePath = Path.Combine(imagesDirectory, albumCover);
-                MessageBox.Show(imagePath);
 
                 // Überprüfen, ob die Datei existiert
                 if (!File.Exists(imagePath))
@@ -326,6 +364,42 @@ namespace StreamingDB
                 MessageBox.Show($"Fehler beim Laden des Bildes: {ex.Message}");
             }
         }
+
+        private void loadArtistPicture()
+        {
+            try
+            {
+                if (pictureBoxArtist.Image != null)
+                {
+                    pictureBoxArtist.Image.Dispose();
+                    pictureBoxArtist.Image = null;
+                }
+
+                string imagesDirectory = Path.Combine(Application.StartupPath, "Images");
+                string artistPicture = artists.Find(x => x.ArtistName == labelArtistArtist.Text)?.ArtistImage;
+
+                if (string.IsNullOrEmpty(artistPicture))
+                {
+                    MessageBox.Show("Kein Künstlerbild angegeben.");
+                    return;
+                }
+
+                string imagePath = Path.Combine(imagesDirectory, artistPicture);
+                if (!File.Exists(imagePath))
+                {
+                    MessageBox.Show($"Bilddatei nicht gefunden: {imagePath}");
+                    return;
+                }
+
+                pictureBoxArtist.Image = Image.FromFile(imagePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #endregion
     }
 }
 
