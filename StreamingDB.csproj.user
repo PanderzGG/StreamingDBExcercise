@@ -4,6 +4,9 @@
     <Compile Update="NeuerArtist.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="NeuesAlbum.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="StreamDB.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -25,5 +25,12 @@ namespace StreamingDB
             this.artistInfo = artistInfo;
             this.artistImage = artistImage;
         }
+
+        public Artist(string artistName, string artistInfo, string artistImage)
+        {
+            this.artistName = artistName;
+            this.artistInfo = artistInfo;
+            this.artistImage = artistImage;
+        }
     }
 }

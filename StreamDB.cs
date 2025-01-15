@@ -259,7 +259,7 @@ namespace StreamingDB
                 {
                     int trackCount = dataGridViewAlbumTrackList.Rows.Count;
 
-                    for(int i = 0; i < trackCount; i++)
+                    for (int i = 0; i < trackCount; i++)
                     {
                         var selectedSong = songs.Find(x => x.SongTitel == dataGridViewAlbumTrackList.Rows[i].Cells[1].Value.ToString()).SongID;
                         var selectedSongData = songData.Find(x => x.SongID == selectedSong);
@@ -296,7 +296,7 @@ namespace StreamingDB
                 this.ActiveControl = null;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -312,7 +312,7 @@ namespace StreamingDB
                 textBoxLabelInfo.Text = info;
                 this.ActiveControl = null;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -335,7 +335,7 @@ namespace StreamingDB
                 string imagesDirectory = Path.Combine(Application.StartupPath, "Images");
                 string albumCover = alben.Find(x => x.AlbumName == labelAlbumAlbum.Text)?.AlbumCover;
 
-                
+
 
                 if (string.IsNullOrEmpty(albumCover))
                 {
@@ -400,6 +400,39 @@ namespace StreamingDB
         }
 
         #endregion
+
+        private void buttonNewArtist_Click(object sender, EventArgs e)
+        {
+            NeuerArtist neu = new NeuerArtist();
+
+            neu.FormClosed += NeuerArtist_FormClosed;
+
+            neu.Show();
+
+        }
+
+        private void NeuerArtist_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            onLoadLists();
+            onLoadComboBox();
+            onLoadHideTabs();
+        }
+
+        private void buttonNewAlbum_Click(object sender, EventArgs e)
+        {
+            NeuesAlbum neu = new NeuesAlbum();
+
+            neu.FormClosed += NeuesAlbum_FormClosed;
+
+            neu.Show();
+        }
+
+        private void NeuesAlbum_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            onLoadLists();
+            onLoadComboBox();
+            onLoadHideTabs();
+        }
     }
 }
 

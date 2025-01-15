@@ -30,6 +30,7 @@
         {
             tabControlOverview = new TabControl();
             tabPageOverview = new TabPage();
+            buttonNewArtist = new Button();
             labelGenreWert = new System.Windows.Forms.Label();
             labelGenre = new System.Windows.Forms.Label();
             buttonLabelDetail = new Button();
@@ -68,7 +69,7 @@
             tabPageLabelDetail = new TabPage();
             textBoxLabelInfo = new TextBox();
             labelLabelLabel = new System.Windows.Forms.Label();
-            buttonNewArtist = new Button();
+            buttonNewAlbum = new Button();
             tabControlOverview.SuspendLayout();
             tabPageOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAlbumTrackList).BeginInit();
@@ -96,6 +97,7 @@
             // 
             // tabPageOverview
             // 
+            tabPageOverview.Controls.Add(buttonNewAlbum);
             tabPageOverview.Controls.Add(buttonNewArtist);
             tabPageOverview.Controls.Add(labelGenreWert);
             tabPageOverview.Controls.Add(labelGenre);
@@ -119,6 +121,16 @@
             tabPageOverview.TabIndex = 0;
             tabPageOverview.Text = "Übersicht";
             tabPageOverview.UseVisualStyleBackColor = true;
+            // 
+            // buttonNewArtist
+            // 
+            buttonNewArtist.Location = new Point(38, 422);
+            buttonNewArtist.Name = "buttonNewArtist";
+            buttonNewArtist.Size = new Size(160, 46);
+            buttonNewArtist.TabIndex = 15;
+            buttonNewArtist.Text = "Neuer Artist";
+            buttonNewArtist.UseVisualStyleBackColor = true;
+            buttonNewArtist.Click += buttonNewArtist_Click;
             // 
             // labelGenreWert
             // 
@@ -237,6 +249,7 @@
             dataGridViewAlbumTrackList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewAlbumTrackList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAlbumTrackList.Columns.AddRange(new DataGridViewColumn[] { songNr, songTitel, songDauer, songFeat });
+            dataGridViewAlbumTrackList.Enabled = false;
             dataGridViewAlbumTrackList.Location = new Point(294, 64);
             dataGridViewAlbumTrackList.MultiSelect = false;
             dataGridViewAlbumTrackList.Name = "dataGridViewAlbumTrackList";
@@ -485,14 +498,15 @@
             labelLabelLabel.TabIndex = 0;
             labelLabelLabel.Text = "label1";
             // 
-            // buttonNewArtist
+            // buttonNewAlbum
             // 
-            buttonNewArtist.Location = new Point(38, 422);
-            buttonNewArtist.Name = "buttonNewArtist";
-            buttonNewArtist.Size = new Size(160, 46);
-            buttonNewArtist.TabIndex = 15;
-            buttonNewArtist.Text = "Neuer Artist";
-            buttonNewArtist.UseVisualStyleBackColor = true;
+            buttonNewAlbum.Location = new Point(38, 474);
+            buttonNewAlbum.Name = "buttonNewAlbum";
+            buttonNewAlbum.Size = new Size(160, 46);
+            buttonNewAlbum.TabIndex = 16;
+            buttonNewAlbum.Text = "Neues Album";
+            buttonNewAlbum.UseVisualStyleBackColor = true;
+            buttonNewAlbum.Click += buttonNewAlbum_Click;
             // 
             // StreamDB
             // 
@@ -561,5 +575,6 @@
         private System.Windows.Forms.Label labelLabelLabel;
         private TextBox textBoxLabelInfo;
         private Button buttonNewArtist;
+        private Button buttonNewAlbum;
     }
 }

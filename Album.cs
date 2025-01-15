@@ -32,5 +32,14 @@ namespace StreamingDB
             this.labelID = labelID;
             this.artistID = artistID;
         }
+        
+        public Album(string albumName, int erscheinungsjahr, string albumCover, int labelID, int artistID)
+        {
+            this.AlbumName = albumName;
+            this.Erscheinungsjahr = erscheinungsjahr;
+            this.AlbumCover = albumCover;
+            this.labelID = labelID;
+            this.artistID = artistID;
+        }
     }
 }

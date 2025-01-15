@@ -301,7 +301,53 @@ namespace StreamingDB
 
         #endregion
 
-            #region Direkter XML Export
+        #region Write to Database
+        
+
+        public void newArtist(Artist artist)
+        {
+            try
+            {
+                Open();
+                MySqlCommand com = con.CreateCommand();
+
+                com.CommandText = string.Format("INSERT INTO artist VALUES(NULL, '{0}', '{1}', '{2}');", artist.ArtistName, artist.ArtistInfo, artist.ArtistImage);
+                com.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public void newAlbum(Album album, Song song)
+        {
+            try
+            {
+                Open();
+                MySqlCommand com = con.CreateCommand();
+
+                com.CommandText = string.Format("INSERT INTO album VALUES(NULL, '{0}', '{1}', '{2}', '{3}', '{4}')", album.AlbumName, album.Erscheinungsjahr, album.AlbumCover, album.LabelID, album.ArtistID);
+                com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+
+        #endregion
+
+        #region Direkter XML Export
 
 
         public void ExportAlbumToXml()
