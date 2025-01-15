@@ -41,5 +41,10 @@ namespace StreamingDB
             this.labelID = labelID;
             this.artistID = artistID;
         }
+
+        public Album()
+        {
+
+        }
     }
 }

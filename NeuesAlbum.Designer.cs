@@ -45,14 +45,20 @@
             labelAlbumErscheinungsjahrNeu = new System.Windows.Forms.Label();
             labelAlbumNameNeu = new System.Windows.Forms.Label();
             tabPageSongs = new TabPage();
+            buttonAlbumSongZurueck = new Button();
+            buttonAlbumSpeichern = new Button();
             labelAlbumTracklistNeu = new System.Windows.Forms.Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewTracklist = new DataGridView();
+            trackListTitel = new DataGridViewTextBoxColumn();
+            trackListDauer = new DataGridViewTextBoxColumn();
+            trackListBPM = new DataGridViewTextBoxColumn();
+            trackListFormat = new DataGridViewTextBoxColumn();
             tabControlAlbumNeu.SuspendLayout();
             tabPageNeuesAlbum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbumNeu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAlbumErschJahrNeu).BeginInit();
             tabPageSongs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTracklist).BeginInit();
             SuspendLayout();
             // 
             // tabControlAlbumNeu
@@ -140,9 +146,11 @@
             // 
             // pictureBoxAlbumNeu
             // 
+            pictureBoxAlbumNeu.BorderStyle = BorderStyle.Fixed3D;
             pictureBoxAlbumNeu.Location = new Point(338, 26);
             pictureBoxAlbumNeu.Name = "pictureBoxAlbumNeu";
             pictureBoxAlbumNeu.Size = new Size(283, 228);
+            pictureBoxAlbumNeu.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAlbumNeu.TabIndex = 8;
             pictureBoxAlbumNeu.TabStop = false;
             // 
@@ -165,9 +173,11 @@
             // numericUpDownAlbumErschJahrNeu
             // 
             numericUpDownAlbumErschJahrNeu.Location = new Point(142, 73);
+            numericUpDownAlbumErschJahrNeu.Maximum = new decimal(new int[] { 3500, 0, 0, 0 });
             numericUpDownAlbumErschJahrNeu.Name = "numericUpDownAlbumErschJahrNeu";
             numericUpDownAlbumErschJahrNeu.Size = new Size(131, 23);
             numericUpDownAlbumErschJahrNeu.TabIndex = 5;
+            numericUpDownAlbumErschJahrNeu.Value = new decimal(new int[] { 2025, 0, 0, 0 });
             // 
             // textBoxAlbumAlbumNeu
             // 
@@ -214,8 +224,10 @@
             // 
             // tabPageSongs
             // 
+            tabPageSongs.Controls.Add(buttonAlbumSongZurueck);
+            tabPageSongs.Controls.Add(buttonAlbumSpeichern);
             tabPageSongs.Controls.Add(labelAlbumTracklistNeu);
-            tabPageSongs.Controls.Add(dataGridView1);
+            tabPageSongs.Controls.Add(dataGridViewTracklist);
             tabPageSongs.Location = new Point(4, 24);
             tabPageSongs.Name = "tabPageSongs";
             tabPageSongs.Padding = new Padding(3);
@@ -223,6 +235,26 @@
             tabPageSongs.TabIndex = 1;
             tabPageSongs.Text = "Songs";
             tabPageSongs.UseVisualStyleBackColor = true;
+            // 
+            // buttonAlbumSongZurueck
+            // 
+            buttonAlbumSongZurueck.Location = new Point(6, 358);
+            buttonAlbumSongZurueck.Name = "buttonAlbumSongZurueck";
+            buttonAlbumSongZurueck.Size = new Size(114, 29);
+            buttonAlbumSongZurueck.TabIndex = 3;
+            buttonAlbumSongZurueck.Text = "Zurück";
+            buttonAlbumSongZurueck.UseVisualStyleBackColor = true;
+            buttonAlbumSongZurueck.Click += buttonAlbumSongZurueck_Click;
+            // 
+            // buttonAlbumSpeichern
+            // 
+            buttonAlbumSpeichern.Location = new Point(507, 358);
+            buttonAlbumSpeichern.Name = "buttonAlbumSpeichern";
+            buttonAlbumSpeichern.Size = new Size(114, 29);
+            buttonAlbumSpeichern.TabIndex = 2;
+            buttonAlbumSpeichern.Text = "Speichern";
+            buttonAlbumSpeichern.UseVisualStyleBackColor = true;
+            buttonAlbumSpeichern.Click += buttonAlbumSpeichern_Click;
             // 
             // labelAlbumTracklistNeu
             // 
@@ -233,13 +265,37 @@
             labelAlbumTracklistNeu.TabIndex = 1;
             labelAlbumTracklistNeu.Text = "Tracklist: ";
             // 
-            // dataGridView1
+            // dataGridViewTracklist
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 52);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(615, 292);
-            dataGridView1.TabIndex = 0;
+            dataGridViewTracklist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewTracklist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewTracklist.Columns.AddRange(new DataGridViewColumn[] { trackListTitel, trackListDauer, trackListBPM, trackListFormat });
+            dataGridViewTracklist.Location = new Point(6, 52);
+            dataGridViewTracklist.MultiSelect = false;
+            dataGridViewTracklist.Name = "dataGridViewTracklist";
+            dataGridViewTracklist.Size = new Size(615, 292);
+            dataGridViewTracklist.TabIndex = 0;
+            // 
+            // trackListTitel
+            // 
+            trackListTitel.HeaderText = "Titel";
+            trackListTitel.Name = "trackListTitel";
+            // 
+            // trackListDauer
+            // 
+            trackListDauer.HeaderText = "Dauer";
+            trackListDauer.Name = "trackListDauer";
+            // 
+            // trackListBPM
+            // 
+            trackListBPM.HeaderText = "BPM";
+            trackListBPM.Name = "trackListBPM";
+            // 
+            // trackListFormat
+            // 
+            trackListFormat.HeaderText = "Format";
+            trackListFormat.Name = "trackListFormat";
+            trackListFormat.Resizable = DataGridViewTriState.True;
             // 
             // NeuesAlbum
             // 
@@ -256,7 +312,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownAlbumErschJahrNeu).EndInit();
             tabPageSongs.ResumeLayout(false);
             tabPageSongs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTracklist).EndInit();
             ResumeLayout(false);
         }
 
@@ -276,10 +332,16 @@
         private NumericUpDown numericUpDownAlbumErschJahrNeu;
         private TextBox textBoxAlbumAlbumNeu;
         private System.Windows.Forms.Label labelAlbumTracklistNeu;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewTracklist;
         private System.Windows.Forms.Label labelAlbumGenreNeu;
         private Button buttonAlbumAbbrechenNeu;
         private Button buttonAlbumNeuNaechsteSeite;
         private ComboBox comboBoxAlbumGenreNeu;
+        private Button buttonAlbumSpeichern;
+        private Button buttonAlbumSongZurueck;
+        private DataGridViewTextBoxColumn trackListTitel;
+        private DataGridViewTextBoxColumn trackListDauer;
+        private DataGridViewTextBoxColumn trackListBPM;
+        private DataGridViewTextBoxColumn trackListFormat;
     }
 }

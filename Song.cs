@@ -25,5 +25,12 @@ namespace StreamingDB
             this.genreID = genreID;
             this.albumID = albumID;
         }
+
+        public Song(string songTitel, int genreID, int albumID)
+        {
+            this.songTitel = songTitel;
+            this.genreID = genreID;
+            this.albumID = albumID;
+        }
     }
 }

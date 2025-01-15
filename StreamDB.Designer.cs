@@ -30,6 +30,7 @@
         {
             tabControlOverview = new TabControl();
             tabPageOverview = new TabPage();
+            buttonNewAlbum = new Button();
             buttonNewArtist = new Button();
             labelGenreWert = new System.Windows.Forms.Label();
             labelGenre = new System.Windows.Forms.Label();
@@ -69,7 +70,6 @@
             tabPageLabelDetail = new TabPage();
             textBoxLabelInfo = new TextBox();
             labelLabelLabel = new System.Windows.Forms.Label();
-            buttonNewAlbum = new Button();
             tabControlOverview.SuspendLayout();
             tabPageOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAlbumTrackList).BeginInit();
@@ -122,9 +122,19 @@
             tabPageOverview.Text = "Übersicht";
             tabPageOverview.UseVisualStyleBackColor = true;
             // 
+            // buttonNewAlbum
+            // 
+            buttonNewAlbum.Location = new Point(590, 441);
+            buttonNewAlbum.Name = "buttonNewAlbum";
+            buttonNewAlbum.Size = new Size(160, 46);
+            buttonNewAlbum.TabIndex = 16;
+            buttonNewAlbum.Text = "Neues Album";
+            buttonNewAlbum.UseVisualStyleBackColor = true;
+            buttonNewAlbum.Click += buttonNewAlbum_Click;
+            // 
             // buttonNewArtist
             // 
-            buttonNewArtist.Location = new Point(38, 422);
+            buttonNewArtist.Location = new Point(590, 372);
             buttonNewArtist.Name = "buttonNewArtist";
             buttonNewArtist.Size = new Size(160, 46);
             buttonNewArtist.TabIndex = 15;
@@ -154,7 +164,7 @@
             // 
             // buttonLabelDetail
             // 
-            buttonLabelDetail.Location = new Point(590, 328);
+            buttonLabelDetail.Location = new Point(38, 454);
             buttonLabelDetail.Name = "buttonLabelDetail";
             buttonLabelDetail.Size = new Size(160, 46);
             buttonLabelDetail.TabIndex = 12;
@@ -164,7 +174,7 @@
             // 
             // buttonArtistAnzeigen
             // 
-            buttonArtistAnzeigen.Location = new Point(314, 328);
+            buttonArtistAnzeigen.Location = new Point(38, 350);
             buttonArtistAnzeigen.Name = "buttonArtistAnzeigen";
             buttonArtistAnzeigen.Size = new Size(160, 46);
             buttonArtistAnzeigen.TabIndex = 11;
@@ -174,7 +184,7 @@
             // 
             // buttonAlbumAnzeigen
             // 
-            buttonAlbumAnzeigen.Location = new Point(38, 328);
+            buttonAlbumAnzeigen.Location = new Point(38, 402);
             buttonAlbumAnzeigen.Name = "buttonAlbumAnzeigen";
             buttonAlbumAnzeigen.Size = new Size(160, 46);
             buttonAlbumAnzeigen.TabIndex = 10;
@@ -497,16 +507,6 @@
             labelLabelLabel.Size = new Size(115, 48);
             labelLabelLabel.TabIndex = 0;
             labelLabelLabel.Text = "label1";
-            // 
-            // buttonNewAlbum
-            // 
-            buttonNewAlbum.Location = new Point(38, 474);
-            buttonNewAlbum.Name = "buttonNewAlbum";
-            buttonNewAlbum.Size = new Size(160, 46);
-            buttonNewAlbum.TabIndex = 16;
-            buttonNewAlbum.Text = "Neues Album";
-            buttonNewAlbum.UseVisualStyleBackColor = true;
-            buttonNewAlbum.Click += buttonNewAlbum_Click;
             // 
             // StreamDB
             // 

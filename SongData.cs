@@ -28,5 +28,13 @@ namespace StreamingDB
             this.songFormat = songFormat;
             this.songID = songID;
         }
+
+        public SongData(TimeSpan songDauer, int songBPM, string songFormat, int songID)
+        {
+            this.songDauer = songDauer;
+            this.songBPM = songBPM;
+            this.songFormat = songFormat;
+            this.songID = songID;
+        }
     }
 }

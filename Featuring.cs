@@ -22,5 +22,11 @@ namespace StreamingDB
             this.songID = songID;
             this.artistID = artistID;
         }
+
+        public Featuring(int songID, int artistID)
+        {
+            this.songID = songID;
+            this.artistID = artistID;
+        }
     }
 }

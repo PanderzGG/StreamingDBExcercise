@@ -64,3 +64,5 @@ C:\Users\Sa.Kleinen\source\repos\StreamingDBExcercise-main\obj\Debug\net8.0-wind
 C:\Users\Sa.Kleinen\source\repos\StreamingDBExcercise-main\obj\Debug\net8.0-windows\ref\StreamingDB.dll
 C:\Users\Sa.Kleinen\source\repos\StreamingDBExcercise-main\obj\Debug\net8.0-windows\StreamingDB.NeuerArtist.resources
 C:\Users\Sa.Kleinen\source\repos\StreamingDBExcercise-main\obj\Debug\net8.0-windows\StreamingDB.NeuesAlbum.resources
+C:\Users\sasch\source\repos\StreamingDB\StreamingDB\obj\Debug\net8.0-windows\StreamingDB.NeuerArtist.resources
+C:\Users\sasch\source\repos\StreamingDB\StreamingDB\obj\Debug\net8.0-windows\StreamingDB.NeuesAlbum.resources

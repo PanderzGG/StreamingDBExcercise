@@ -324,7 +324,7 @@ namespace StreamingDB
             }
         }
 
-        public void newAlbum(Album album, Song song)
+        public void newAlbum(Album album)
         {
             try
             {
@@ -344,10 +344,66 @@ namespace StreamingDB
             }
         }
 
+        public void newSong(Song song)
+        {
+            try
+            {
+                Open();
+                MySqlCommand com = con.CreateCommand();
+                com.CommandText = string.Format("INSERT INTO song VALUES(NULL, '{0}', {1}, {2})", song.SongTitel, song.GenreID, song.AlbumID);
+                com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public void newSongData(SongData songData)
+        {
+            try
+            {
+                Open();
+                MySqlCommand com = con.CreateCommand();
+                com.CommandText = string.Format("INSERT INTO songdata VALUES(NULL, '{0}', {1}, '{2}', {3})", songData.SongDauer, songData.SongBPM, songData.SongFormat, songData.SongID);
+                com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("newSongData Methode, SQL Syntax fehlerhaft." + songData.SongDauer.ToString() + ", " + songData.SongBPM.ToString() + ", " + songData.SongFormat + ", " + songData.SongID.ToString());
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public void newFeat(Featuring feat)
+        {
+            try
+            {
+                Open();
+                MySqlCommand com = con.CreateCommand();
+                com.CommandText = string.Format("INSERT INTO featuring VALUES(NULL, {0}, {1})", feat.SongID, feat.ArtistID);
+                com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Close();
+            }
+        }
 
         #endregion
 
-        #region Direkter XML Export
+            #region Direkter XML Export
 
 
         public void ExportAlbumToXml()
