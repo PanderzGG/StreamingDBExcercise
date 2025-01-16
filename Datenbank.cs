@@ -57,7 +57,7 @@ namespace StreamingDB
                 Open();
 
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = "SELECT * FROM artist ORDER BY ArtistID desc;";
+                com.CommandText = "SELECT * FROM artist ORDER BY ArtistID;";
                 MySqlDataReader reader = com.ExecuteReader();
 
                 while (reader.Read())
@@ -94,7 +94,7 @@ namespace StreamingDB
                 Open();
 
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = @"SELECT * FROM song ORDER BY SongID desc;";
+                com.CommandText = @"SELECT * FROM song ORDER BY SongID;";
                 MySqlDataReader reader = com.ExecuteReader();
 
                 while (reader.Read())
@@ -130,7 +130,7 @@ namespace StreamingDB
             {
                 Open();
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = "SELECT * FROM label ORDER BY LabelID desc;";
+                com.CommandText = "SELECT * FROM label ORDER BY LabelID;";
                 MySqlDataReader reader = com.ExecuteReader();
 
                 while (reader.Read())
@@ -167,7 +167,7 @@ namespace StreamingDB
                 Open();
 
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = @"SELECT * FROM album ORDER BY AlbumID desc;";
+                com.CommandText = @"SELECT * FROM album ORDER BY AlbumID;";
                 MySqlDataReader reader = com.ExecuteReader();
                 while(reader.Read())
                 {
@@ -202,7 +202,7 @@ namespace StreamingDB
             {
                 Open();
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = @"SELECT * FROM songdata ORDER BY SongDataID desc;";
+                com.CommandText = @"SELECT * FROM songdata ORDER BY SongDataID;";
                 MySqlDataReader reader = com.ExecuteReader();
 
                 while(reader.Read())
@@ -237,7 +237,7 @@ namespace StreamingDB
             {
                 Open();
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = @"SELECT * FROM genre ORDER BY GenreID desc;";
+                com.CommandText = @"SELECT * FROM genre ORDER BY GenreID;";
                 MySqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
@@ -269,7 +269,7 @@ namespace StreamingDB
             {
                 Open();
                 MySqlCommand com = con.CreateCommand();
-                com.CommandText = @"SELECT * FROM featuring ORDER BY FeaturingID desc;";
+                com.CommandText = @"SELECT * FROM featuring ORDER BY FeaturingID;";
                 MySqlDataReader reader = com.ExecuteReader();
 
                 while (reader.Read())
@@ -331,12 +331,12 @@ namespace StreamingDB
                 Open();
                 MySqlCommand com = con.CreateCommand();
 
-                com.CommandText = string.Format("INSERT INTO album VALUES(NULL, '{0}', '{1}', '{2}', '{3}', '{4}')", album.AlbumName, album.Erscheinungsjahr, album.AlbumCover, album.LabelID, album.ArtistID);
+                com.CommandText = string.Format("INSERT INTO album VALUES(NULL, '{0}', {1}, '{2}', {3}, {4})", album.AlbumName, album.Erscheinungsjahr, album.AlbumCover, album.LabelID, album.ArtistID);
                 com.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                
+                MessageBox.Show("newAlbum Query: " + ex.Message);
             }
             finally
             {

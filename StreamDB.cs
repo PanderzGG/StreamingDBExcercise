@@ -1,11 +1,16 @@
+using System.Windows.Forms;
+
 namespace StreamingDB
 {
     public partial class StreamDB : Form
     {
+        
 
         private static bool detail;
         private static bool justSwitched;
 
+
+        Color dlila = ColorTranslator.FromHtml("#7289da");
         Datenbank db = new Datenbank();
         XML xml = new XML("Album.xml");
 
@@ -20,6 +25,21 @@ namespace StreamingDB
         public StreamDB()
         {
             InitializeComponent();
+
+            //tabPageOverview.BorderStyle = (BorderStyle)FormBorderStyle.None;
+
+
+
+            //tabControlOverview.DrawMode = TabDrawMode.OwnerDrawFixed;
+            //tabControlOverview.DrawItem += TabControlOverview_DrawItem;
+
+            //tabControlOverview.BackColor = Color.FromArgb(32, 32, 32); // TabControl-Hintergrundfarbe
+            //foreach (TabPage tabPage in tabControlOverview.TabPages)
+            //{
+            //    tabPage.BackColor = Color.FromArgb(32, 32, 32); // TabPages-Hintergrundfarbe
+            //}
+            
+            //tabControl1_DrawItem();
             onLoadLists();
             onLoadComboBox();
             onLoadHideTabs();
@@ -27,6 +47,71 @@ namespace StreamingDB
 
 
         #region onLoad
+
+        //private void tabControl1_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
+        //{
+        //    TabPage CurrentTab = tabControlOverview.TabPages[e.Index];
+        //    Rectangle ItemRect = tabControlOverview.GetTabRect(e.Index);
+        //    SolidBrush FillBrush = new SolidBrush(Color.Red);
+        //    SolidBrush TextBrush = new SolidBrush(Color.White);
+        //    StringFormat sf = new StringFormat();
+        //    sf.Alignment = StringAlignment.Center;
+        //    sf.LineAlignment = StringAlignment.Center;
+
+        //    //If we are currently painting the Selected TabItem we'll
+        //    //change the brush colors and inflate the rectangle.
+        //    if (System.Convert.ToBoolean(e.State & DrawItemState.Selected))
+        //    {
+        //        FillBrush.Color = Color.White;
+        //        TextBrush.Color = Color.Red;
+        //        ItemRect.Inflate(2, 2);
+        //    }
+
+        //    //Set up rotation for left and right aligned tabs
+        //    if (tabControlOverview.Alignment == TabAlignment.Left || tabControlOverview.Alignment == TabAlignment.Right)
+        //    {
+        //        float RotateAngle = 90;
+        //        if (tabControlOverview.Alignment == TabAlignment.Left)
+        //            RotateAngle = 270;
+        //        PointF cp = new PointF(ItemRect.Left + (ItemRect.Width / 2), ItemRect.Top + (ItemRect.Height / 2));
+        //        e.Graphics.TranslateTransform(cp.X, cp.Y);
+        //        e.Graphics.RotateTransform(RotateAngle);
+        //        ItemRect = new Rectangle(-(ItemRect.Height / 2), -(ItemRect.Width / 2), ItemRect.Height, ItemRect.Width);
+        //    }
+
+        //    //Next we'll paint the TabItem with our Fill Brush
+        //    e.Graphics.FillRectangle(FillBrush, ItemRect);
+
+        //    //Now draw the text.
+        //    e.Graphics.DrawString(CurrentTab.Text, e.Font, TextBrush, (RectangleF)ItemRect, sf);
+
+        //    //Reset any Graphics rotation
+        //    e.Graphics.ResetTransform();
+
+        //    //Finally, we should Dispose of our brushes.
+        //    FillBrush.Dispose();
+        //    TextBrush.Dispose();
+        //}
+
+
+        //private void TabControlOverview_DrawItem(object sender, DrawItemEventArgs e)
+        //{
+        //    var tabControl = sender as TabControl;
+        //    e.Graphics.FillRectangle(new SolidBrush(dlila), e.Bounds);
+
+        //    Rectangle paddedBounds = e.Bounds;
+        //    paddedBounds.Inflate(-2, -2);
+
+        //    TextRenderer.DrawText(
+        //        e.Graphics,
+        //        tabControl.TabPages[e.Index].Text,
+        //        e.Font,
+        //        e.Bounds,
+        //        Color.White,
+        //        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+        //    );
+        //}
+
         private void onLoadLists()
         {
             artists = db.getArtists();
@@ -89,7 +174,6 @@ namespace StreamingDB
                 comboBoxAlben.Enabled = true;
             }
 
-            // Alben ComboBox füllen
             try
             {
 
@@ -133,20 +217,32 @@ namespace StreamingDB
 
             try
             {
+                
                 int songCount = 0;
 
                 foreach (Song song in songs)
                 {
                     var selectedAlbum = alben.Find(x => x.AlbumName == comboBoxAlben.Text).AlbumID;
                     var selectedSongData = songData.Find(x => x.SongID == song.SongID);
+                    
                     var selectedFeat = featurings.Find(x => x.SongID == song.SongID);
-                    var artist = artists.Find(x => x.ArtistID == selectedFeat.ArtistID);
 
-                    if (comboBoxAlben.SelectedIndex != -1 && song.AlbumID == selectedAlbum)
+                    if(selectedFeat != null)
                     {
-                        songCount++;
-                        dataGridViewAlbumTrackList.Rows.Add(songCount, song.SongTitel.ToString(), selectedSongData?.SongDauer, artist.ArtistName);
+                        var artist = artists.Find(x => x.ArtistID == selectedFeat.ArtistID);
+
+                        if (comboBoxAlben.SelectedIndex != -1 && song.AlbumID == selectedAlbum)
+                        {
+                            songCount++;
+                            dataGridViewAlbumTrackList.Rows.Add(songCount, song.SongTitel.ToString(), selectedSongData?.SongDauer, artist.ArtistName);
+                        }
                     }
+                    else
+                    {
+                        continue;
+                    }
+
+                    
                 }
 
                 songCount = 0;

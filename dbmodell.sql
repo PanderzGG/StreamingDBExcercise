@@ -1,3 +1,5 @@
+drop database if exists streamingdb;
+
 create database streamingdb;
 
 use streamingdb;
@@ -349,3 +351,4 @@ VALUES
 ('00:05:00', 132, 'MP3', 52);
 
 
+use streamingdb;
