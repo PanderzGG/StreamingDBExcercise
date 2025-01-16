@@ -33,7 +33,6 @@ namespace StreamingDB
 
         private string imagePath = "";
         private string picDelPath;
-        private string testPath;
 
 
         public NeuesAlbum()
@@ -363,6 +362,7 @@ namespace StreamingDB
 
             MessageBox.Show("Album wurde erfolgreich erstellt");
             isSaved = true;
+            pictureBoxAlbumNeu.Image.Dispose();
             this.Close();
         }
 

@@ -296,6 +296,15 @@ namespace StreamingDB
 
             neu.FormClosed += NeuerArtist_FormClosed;
 
+            neu.onAborted += (result) =>
+            {
+                string delPic = Path.Combine(Application.StartupPath, "Images", result);
+                if (File.Exists(delPic))
+                {
+                    File.Delete(delPic);
+                }
+            };
+
             neu.Show();
 
         }

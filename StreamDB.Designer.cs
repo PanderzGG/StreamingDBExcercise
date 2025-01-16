@@ -34,6 +34,8 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             tabControlOverview = new TabControl();
             tabPageOverview = new TabPage();
             panel1 = new Panel();
@@ -432,7 +434,8 @@
             // 
             dataGridViewAlbumSongList.AllowUserToAddRows = false;
             dataGridViewAlbumSongList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(30, 33, 36);
+            dataGridViewCellStyle5.ForeColor = Color.White;
             dataGridViewAlbumSongList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewAlbumSongList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewAlbumSongList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -441,18 +444,35 @@
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.FromArgb(40, 43, 48);
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.ForeColor = Color.White;
             dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(54, 57, 62);
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dataGridViewAlbumSongList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewAlbumSongList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAlbumSongList.Columns.AddRange(new DataGridViewColumn[] { albumSongNummer, albumSongTitel, albumSongDauer, albumSongBPM, albumSongFormat });
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dataGridViewAlbumSongList.DefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewAlbumSongList.GridColor = Color.FromArgb(30, 33, 36);
             dataGridViewAlbumSongList.Location = new Point(68, 280);
             dataGridViewAlbumSongList.MultiSelect = false;
             dataGridViewAlbumSongList.Name = "dataGridViewAlbumSongList";
             dataGridViewAlbumSongList.ReadOnly = true;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(30, 33, 36);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataGridViewAlbumSongList.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewAlbumSongList.RowHeadersVisible = false;
             dataGridViewAlbumSongList.Size = new Size(756, 359);
             dataGridViewAlbumSongList.TabIndex = 3;
             // 

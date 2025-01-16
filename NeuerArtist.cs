@@ -12,16 +12,36 @@ namespace StreamingDB
 {
     public partial class NeuerArtist : Form
     {
+        public event Action<string> onAborted;
+        
         private string artistName;
         private string artistInfo;
         private string imagePath;
 
         Datenbank db = new Datenbank();
 
+        private bool isSaved = false;
+        private string picDelPath;
+
         public NeuerArtist()
         {
             InitializeComponent();
+
+            this.FormClosing += new FormClosingEventHandler(onClosing);
         }
+
+        private void onClosing(object sender, FormClosingEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+                if (!isSaved && pictureBoxArtistNeu.Image != null)
+                {
+                    pictureBoxArtistNeu.Image.Dispose();
+                    onAborted.Invoke(picDelPath);
+                }
+            }
+        }
+
         #region Drag and Drop
         private void NeuerArtist_DragDrop(object sender, DragEventArgs e)
         {
@@ -32,14 +52,53 @@ namespace StreamingDB
                 if (files != null && files.Length > 0)
                 {
                     string sourceFilePath = files[0];
-                    string fileName = Path.GetFileNameWithoutExtension(sourceFilePath); // Nur den Dateinamen ohne Extension holen
-                    string destinationPath = Path.Combine(Application.StartupPath, "Images", fileName + ".png");
+                    string fileName = Path.GetFileName(sourceFilePath);
+                    string destinationPath = Path.Combine(Application.StartupPath, "Images", fileName);
                     string imagePath = destinationPath;
 
                     File.Copy(sourceFilePath, destinationPath, overwrite: true);
-                    labelArtistNeuDragDropLabel.Visible = false;
-                    pictureBoxArtistNeu.BorderStyle = BorderStyle.None;
-                    pictureBoxArtistNeu.Image = Image.FromFile(destinationPath);
+
+                    if (pictureBoxArtistNeu.Image != null)
+                    {
+                        DialogResult result = MessageBox.Show("Wollen Sie das aktuelle Bild ersetzen?", "Bild ersetzen", MessageBoxButtons.YesNo);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            pictureBoxArtistNeu.Image.Dispose();
+                            pictureBoxArtistNeu.Image = Image.FromFile(destinationPath);
+
+                            try
+                            {
+                                if (File.Exists(destinationPath))
+                                {
+                                    File.Delete(picDelPath);
+                                    picDelPath = destinationPath;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Datei konnte nicht gelöscht werden");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("NeuerArtist_DragDrop" + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bild wurde nicht ersetzt");
+                        }
+                    }
+                    else
+                    {
+                        labelArtistNeuDragDropLabel.Visible = false;
+                        pictureBoxArtistNeu.BorderStyle = BorderStyle.None;
+                        pictureBoxArtistNeu.Image = Image.FromFile(destinationPath);
+                        picDelPath = destinationPath;
+                    }
+
+                        
+                    
                 }
             }
             catch (Exception ex)
@@ -79,6 +138,8 @@ namespace StreamingDB
                 db.newArtist(artist);
 
                 MessageBox.Show(artistName + " wurde erfolgreich gespeichert");
+                isSaved = true;
+                pictureBoxArtistNeu.Image.Dispose();
 
                 this.Close();
             }
@@ -97,6 +158,9 @@ namespace StreamingDB
             textBoxNeuerArtist.Text = "";
             textBoxArtistNeuInfo.Text = "";
             imagePath = "";
+            isSaved = false;
+            pictureBoxArtistNeu.Image.Dispose();
+            onAborted.Invoke(picDelPath);
 
             this.Close();
         }
