@@ -4,13 +4,10 @@ namespace StreamingDB
 {
     public partial class StreamDB : Form
     {
-        
 
         private static bool detail;
         private static bool justSwitched;
 
-
-        Color dlila = ColorTranslator.FromHtml("#7289da");
         Datenbank db = new Datenbank();
         XML xml = new XML("Album.xml");
 
@@ -25,21 +22,6 @@ namespace StreamingDB
         public StreamDB()
         {
             InitializeComponent();
-
-            //tabPageOverview.BorderStyle = (BorderStyle)FormBorderStyle.None;
-
-
-
-            //tabControlOverview.DrawMode = TabDrawMode.OwnerDrawFixed;
-            //tabControlOverview.DrawItem += TabControlOverview_DrawItem;
-
-            //tabControlOverview.BackColor = Color.FromArgb(32, 32, 32); // TabControl-Hintergrundfarbe
-            //foreach (TabPage tabPage in tabControlOverview.TabPages)
-            //{
-            //    tabPage.BackColor = Color.FromArgb(32, 32, 32); // TabPages-Hintergrundfarbe
-            //}
-            
-            //tabControl1_DrawItem();
             onLoadLists();
             onLoadComboBox();
             onLoadHideTabs();
@@ -48,69 +30,6 @@ namespace StreamingDB
 
         #region onLoad
 
-        //private void tabControl1_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
-        //{
-        //    TabPage CurrentTab = tabControlOverview.TabPages[e.Index];
-        //    Rectangle ItemRect = tabControlOverview.GetTabRect(e.Index);
-        //    SolidBrush FillBrush = new SolidBrush(Color.Red);
-        //    SolidBrush TextBrush = new SolidBrush(Color.White);
-        //    StringFormat sf = new StringFormat();
-        //    sf.Alignment = StringAlignment.Center;
-        //    sf.LineAlignment = StringAlignment.Center;
-
-        //    //If we are currently painting the Selected TabItem we'll
-        //    //change the brush colors and inflate the rectangle.
-        //    if (System.Convert.ToBoolean(e.State & DrawItemState.Selected))
-        //    {
-        //        FillBrush.Color = Color.White;
-        //        TextBrush.Color = Color.Red;
-        //        ItemRect.Inflate(2, 2);
-        //    }
-
-        //    //Set up rotation for left and right aligned tabs
-        //    if (tabControlOverview.Alignment == TabAlignment.Left || tabControlOverview.Alignment == TabAlignment.Right)
-        //    {
-        //        float RotateAngle = 90;
-        //        if (tabControlOverview.Alignment == TabAlignment.Left)
-        //            RotateAngle = 270;
-        //        PointF cp = new PointF(ItemRect.Left + (ItemRect.Width / 2), ItemRect.Top + (ItemRect.Height / 2));
-        //        e.Graphics.TranslateTransform(cp.X, cp.Y);
-        //        e.Graphics.RotateTransform(RotateAngle);
-        //        ItemRect = new Rectangle(-(ItemRect.Height / 2), -(ItemRect.Width / 2), ItemRect.Height, ItemRect.Width);
-        //    }
-
-        //    //Next we'll paint the TabItem with our Fill Brush
-        //    e.Graphics.FillRectangle(FillBrush, ItemRect);
-
-        //    //Now draw the text.
-        //    e.Graphics.DrawString(CurrentTab.Text, e.Font, TextBrush, (RectangleF)ItemRect, sf);
-
-        //    //Reset any Graphics rotation
-        //    e.Graphics.ResetTransform();
-
-        //    //Finally, we should Dispose of our brushes.
-        //    FillBrush.Dispose();
-        //    TextBrush.Dispose();
-        //}
-
-
-        //private void TabControlOverview_DrawItem(object sender, DrawItemEventArgs e)
-        //{
-        //    var tabControl = sender as TabControl;
-        //    e.Graphics.FillRectangle(new SolidBrush(dlila), e.Bounds);
-
-        //    Rectangle paddedBounds = e.Bounds;
-        //    paddedBounds.Inflate(-2, -2);
-
-        //    TextRenderer.DrawText(
-        //        e.Graphics,
-        //        tabControl.TabPages[e.Index].Text,
-        //        e.Font,
-        //        e.Bounds,
-        //        Color.White,
-        //        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-        //    );
-        //}
 
         private void onLoadLists()
         {
@@ -160,7 +79,68 @@ namespace StreamingDB
         }
         #endregion
 
+        #region Draw Methoden
+
+        private void DisableComboBox(ComboBox comboBox)
+        {
+            comboBox.BackColor = Color.FromArgb(54, 57, 62);
+            comboBox.ForeColor = Color.Black;
+            comboBox.Enabled = true;
+
+            // Interaktion verhindern
+
+            // Erlaubt nur auswahl
+            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox.SelectedIndexChanged -= comboBoxAlben_SelectedIndexChanged;
+        }
+
+        private void EnableComboBox(ComboBox comboBox)
+        {
+            comboBox.BackColor = Color.FromArgb(54, 57, 62);
+            comboBox.ForeColor = Color.White;
+            comboBox.Enabled = true;
+
+            comboBox.SelectedIndexChanged += comboBoxAlben_SelectedIndexChanged;
+        }
+
+        #endregion
+
         #region Overview Methoden
+
+        private void tabControlOverview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (tabControlOverview.TabIndex == 0 && detail == true && justSwitched == true)
+            {
+                onLoadHideTabs();
+            }
+            else
+            {
+                justSwitched = true;
+            }
+
+            string selectedTab = tabControlOverview.SelectedTab.Name;
+
+            switch (selectedTab)
+            {
+                case "tabPageOverview":
+
+                    break;
+                case "tabPageAlbumDetail":
+                    albumAbruf();
+                    loadAlbumCover();
+                    break;
+                case "tabPageArtistDetail":
+                    artistAbruf();
+                    loadArtistPicture();
+                    break;
+                case "tabPageLabelDetail":
+                    labelAbruf();
+                    break;
+                default:
+                    break;
+            }
+        }
 
 
         private void comboBoxArtist_SelectedIndexChanged(object sender, EventArgs e)
@@ -171,7 +151,11 @@ namespace StreamingDB
 
             if (comboBoxArtist.SelectedIndex != -1)
             {
-                comboBoxAlben.Enabled = true;
+                EnableComboBox(comboBoxAlben);
+            }
+            else
+            {
+                DisableComboBox(comboBoxAlben);
             }
 
             try
@@ -185,6 +169,7 @@ namespace StreamingDB
                     {
                         comboBoxAlben.Items.Add(album.AlbumName);
                     }
+
                 }
             }
             catch (Exception ex)
@@ -217,17 +202,17 @@ namespace StreamingDB
 
             try
             {
-                
+
                 int songCount = 0;
 
                 foreach (Song song in songs)
                 {
                     var selectedAlbum = alben.Find(x => x.AlbumName == comboBoxAlben.Text).AlbumID;
                     var selectedSongData = songData.Find(x => x.SongID == song.SongID);
-                    
+
                     var selectedFeat = featurings.Find(x => x.SongID == song.SongID);
 
-                    if(selectedFeat != null)
+                    if (selectedFeat != null)
                     {
                         var artist = artists.Find(x => x.ArtistID == selectedFeat.ArtistID);
 
@@ -242,9 +227,9 @@ namespace StreamingDB
                         continue;
                     }
 
-                    
-                }
 
+                }
+                dataGridViewAlbumTrackList.ClearSelection();
                 songCount = 0;
             }
             catch (Exception ex)
@@ -305,42 +290,50 @@ namespace StreamingDB
             }
         }
 
-        #endregion
-
-        private void tabControlOverview_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonNewArtist_Click(object sender, EventArgs e)
         {
+            NeuerArtist neu = new NeuerArtist();
 
-            if (tabControlOverview.TabIndex == 0 && detail == true && justSwitched == true)
-            {
-                onLoadHideTabs();
-            }
-            else
-            {
-                justSwitched = true;
-            }
+            neu.FormClosed += NeuerArtist_FormClosed;
 
-            string selectedTab = tabControlOverview.SelectedTab.Name;
+            neu.Show();
 
-            switch (selectedTab)
-            {
-                case "tabPageOverview":
-
-                    break;
-                case "tabPageAlbumDetail":
-                    albumAbruf();
-                    loadAlbumCover();
-                    break;
-                case "tabPageArtistDetail":
-                    artistAbruf();
-                    loadArtistPicture();
-                    break;
-                case "tabPageLabelDetail":
-                    labelAbruf();
-                    break;
-                default:
-                    break;
-            }
         }
+
+        private void NeuerArtist_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            onLoadLists();
+            onLoadComboBox();
+            onLoadHideTabs();
+        }
+
+        private void buttonNewAlbum_Click(object sender, EventArgs e)
+        {
+            NeuesAlbum neu = new NeuesAlbum();
+
+            neu.FormClosed += NeuesAlbum_FormClosed;
+            
+            neu.onAborted += (result) =>
+            {
+                string delPic = Path.Combine(Application.StartupPath, "Images", result);
+
+                if(File.Exists(delPic))
+                {
+                    File.Delete(delPic);
+                }
+            };
+
+            neu.Show();
+        }
+
+        private void NeuesAlbum_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            onLoadLists();
+            onLoadComboBox();
+            onLoadHideTabs();
+        }
+
+        #endregion
 
         #region Abruf Methoden
         private void albumAbruf()
@@ -495,40 +488,7 @@ namespace StreamingDB
             }
         }
 
-        #endregion
-
-        private void buttonNewArtist_Click(object sender, EventArgs e)
-        {
-            NeuerArtist neu = new NeuerArtist();
-
-            neu.FormClosed += NeuerArtist_FormClosed;
-
-            neu.Show();
-
-        }
-
-        private void NeuerArtist_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            onLoadLists();
-            onLoadComboBox();
-            onLoadHideTabs();
-        }
-
-        private void buttonNewAlbum_Click(object sender, EventArgs e)
-        {
-            NeuesAlbum neu = new NeuesAlbum();
-
-            neu.FormClosed += NeuesAlbum_FormClosed;
-
-            neu.Show();
-        }
-
-        private void NeuesAlbum_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            onLoadLists();
-            onLoadComboBox();
-            onLoadHideTabs();
-        }
+#endregion
     }
 }
 

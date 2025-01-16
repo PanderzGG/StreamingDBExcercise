@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             tabControlAlbumNeu = new TabControl();
             tabPageNeuesAlbum = new TabPage();
+            labelAlbumNeuDragDrop = new System.Windows.Forms.Label();
             buttonAlbumAbbrechenNeu = new Button();
             buttonAlbumNeuNaechsteSeite = new Button();
             comboBoxAlbumGenreNeu = new ComboBox();
@@ -68,12 +72,14 @@
             tabControlAlbumNeu.Location = new Point(12, 12);
             tabControlAlbumNeu.Name = "tabControlAlbumNeu";
             tabControlAlbumNeu.SelectedIndex = 0;
-            tabControlAlbumNeu.Size = new Size(635, 426);
+            tabControlAlbumNeu.Size = new Size(624, 426);
             tabControlAlbumNeu.TabIndex = 0;
             // 
             // tabPageNeuesAlbum
             // 
             tabPageNeuesAlbum.AllowDrop = true;
+            tabPageNeuesAlbum.BackColor = Color.FromArgb(40, 43, 48);
+            tabPageNeuesAlbum.Controls.Add(labelAlbumNeuDragDrop);
             tabPageNeuesAlbum.Controls.Add(buttonAlbumAbbrechenNeu);
             tabPageNeuesAlbum.Controls.Add(buttonAlbumNeuNaechsteSeite);
             tabPageNeuesAlbum.Controls.Add(comboBoxAlbumGenreNeu);
@@ -88,18 +94,28 @@
             tabPageNeuesAlbum.Controls.Add(labelAlbumArtistNeu);
             tabPageNeuesAlbum.Controls.Add(labelAlbumErscheinungsjahrNeu);
             tabPageNeuesAlbum.Controls.Add(labelAlbumNameNeu);
+            tabPageNeuesAlbum.ForeColor = Color.White;
             tabPageNeuesAlbum.Location = new Point(4, 24);
             tabPageNeuesAlbum.Name = "tabPageNeuesAlbum";
             tabPageNeuesAlbum.Padding = new Padding(3);
-            tabPageNeuesAlbum.Size = new Size(627, 398);
+            tabPageNeuesAlbum.Size = new Size(616, 398);
             tabPageNeuesAlbum.TabIndex = 0;
             tabPageNeuesAlbum.Text = "Album";
-            tabPageNeuesAlbum.UseVisualStyleBackColor = true;
             tabPageNeuesAlbum.DragDrop += tabPageNeuesAlbum_DragDrop;
             tabPageNeuesAlbum.DragEnter += tabPageNeuesAlbum_DragEnter;
             // 
+            // labelAlbumNeuDragDrop
+            // 
+            labelAlbumNeuDragDrop.AutoSize = true;
+            labelAlbumNeuDragDrop.Location = new Point(363, 121);
+            labelAlbumNeuDragDrop.Name = "labelAlbumNeuDragDrop";
+            labelAlbumNeuDragDrop.Size = new Size(192, 15);
+            labelAlbumNeuDragDrop.TabIndex = 14;
+            labelAlbumNeuDragDrop.Text = "Ziehen Sie ein Bild in dieses Fenster";
+            // 
             // buttonAlbumAbbrechenNeu
             // 
+            buttonAlbumAbbrechenNeu.ForeColor = Color.Black;
             buttonAlbumAbbrechenNeu.Location = new Point(6, 297);
             buttonAlbumAbbrechenNeu.Name = "buttonAlbumAbbrechenNeu";
             buttonAlbumAbbrechenNeu.Size = new Size(138, 35);
@@ -110,7 +126,8 @@
             // 
             // buttonAlbumNeuNaechsteSeite
             // 
-            buttonAlbumNeuNaechsteSeite.Location = new Point(483, 297);
+            buttonAlbumNeuNaechsteSeite.ForeColor = Color.Black;
+            buttonAlbumNeuNaechsteSeite.Location = new Point(462, 297);
             buttonAlbumNeuNaechsteSeite.Name = "buttonAlbumNeuNaechsteSeite";
             buttonAlbumNeuNaechsteSeite.Size = new Size(138, 35);
             buttonAlbumNeuNaechsteSeite.TabIndex = 12;
@@ -120,6 +137,9 @@
             // 
             // comboBoxAlbumGenreNeu
             // 
+            comboBoxAlbumGenreNeu.BackColor = Color.FromArgb(54, 57, 62);
+            comboBoxAlbumGenreNeu.FlatStyle = FlatStyle.Flat;
+            comboBoxAlbumGenreNeu.ForeColor = Color.White;
             comboBoxAlbumGenreNeu.FormattingEnabled = true;
             comboBoxAlbumGenreNeu.Location = new Point(142, 152);
             comboBoxAlbumGenreNeu.Name = "comboBoxAlbumGenreNeu";
@@ -138,7 +158,7 @@
             // labelAlbumCoverNeu
             // 
             labelAlbumCoverNeu.AutoSize = true;
-            labelAlbumCoverNeu.Location = new Point(338, 8);
+            labelAlbumCoverNeu.Location = new Point(317, 3);
             labelAlbumCoverNeu.Name = "labelAlbumCoverNeu";
             labelAlbumCoverNeu.Size = new Size(80, 15);
             labelAlbumCoverNeu.TabIndex = 9;
@@ -146,8 +166,8 @@
             // 
             // pictureBoxAlbumNeu
             // 
-            pictureBoxAlbumNeu.BorderStyle = BorderStyle.Fixed3D;
-            pictureBoxAlbumNeu.Location = new Point(338, 26);
+            pictureBoxAlbumNeu.BorderStyle = BorderStyle.FixedSingle;
+            pictureBoxAlbumNeu.Location = new Point(317, 26);
             pictureBoxAlbumNeu.Name = "pictureBoxAlbumNeu";
             pictureBoxAlbumNeu.Size = new Size(283, 228);
             pictureBoxAlbumNeu.SizeMode = PictureBoxSizeMode.Zoom;
@@ -156,6 +176,9 @@
             // 
             // comboBoxAlbumLabelNeu
             // 
+            comboBoxAlbumLabelNeu.BackColor = Color.FromArgb(54, 57, 62);
+            comboBoxAlbumLabelNeu.FlatStyle = FlatStyle.Flat;
+            comboBoxAlbumLabelNeu.ForeColor = Color.White;
             comboBoxAlbumLabelNeu.FormattingEnabled = true;
             comboBoxAlbumLabelNeu.Location = new Point(142, 195);
             comboBoxAlbumLabelNeu.Name = "comboBoxAlbumLabelNeu";
@@ -164,6 +187,9 @@
             // 
             // comboBoxAlbumArtistNeu
             // 
+            comboBoxAlbumArtistNeu.BackColor = Color.FromArgb(54, 57, 62);
+            comboBoxAlbumArtistNeu.FlatStyle = FlatStyle.Flat;
+            comboBoxAlbumArtistNeu.ForeColor = Color.White;
             comboBoxAlbumArtistNeu.FormattingEnabled = true;
             comboBoxAlbumArtistNeu.Location = new Point(142, 113);
             comboBoxAlbumArtistNeu.Name = "comboBoxAlbumArtistNeu";
@@ -172,6 +198,8 @@
             // 
             // numericUpDownAlbumErschJahrNeu
             // 
+            numericUpDownAlbumErschJahrNeu.BackColor = Color.FromArgb(54, 57, 62);
+            numericUpDownAlbumErschJahrNeu.ForeColor = Color.White;
             numericUpDownAlbumErschJahrNeu.Location = new Point(142, 73);
             numericUpDownAlbumErschJahrNeu.Maximum = new decimal(new int[] { 3500, 0, 0, 0 });
             numericUpDownAlbumErschJahrNeu.Name = "numericUpDownAlbumErschJahrNeu";
@@ -181,6 +209,8 @@
             // 
             // textBoxAlbumAlbumNeu
             // 
+            textBoxAlbumAlbumNeu.BackColor = Color.FromArgb(54, 57, 62);
+            textBoxAlbumAlbumNeu.ForeColor = Color.White;
             textBoxAlbumAlbumNeu.Location = new Point(142, 26);
             textBoxAlbumAlbumNeu.Name = "textBoxAlbumAlbumNeu";
             textBoxAlbumAlbumNeu.Size = new Size(131, 23);
@@ -224,20 +254,22 @@
             // 
             // tabPageSongs
             // 
+            tabPageSongs.BackColor = Color.FromArgb(40, 43, 48);
             tabPageSongs.Controls.Add(buttonAlbumSongZurueck);
             tabPageSongs.Controls.Add(buttonAlbumSpeichern);
             tabPageSongs.Controls.Add(labelAlbumTracklistNeu);
             tabPageSongs.Controls.Add(dataGridViewTracklist);
+            tabPageSongs.ForeColor = Color.White;
             tabPageSongs.Location = new Point(4, 24);
             tabPageSongs.Name = "tabPageSongs";
             tabPageSongs.Padding = new Padding(3);
-            tabPageSongs.Size = new Size(627, 398);
+            tabPageSongs.Size = new Size(616, 398);
             tabPageSongs.TabIndex = 1;
             tabPageSongs.Text = "Songs";
-            tabPageSongs.UseVisualStyleBackColor = true;
             // 
             // buttonAlbumSongZurueck
             // 
+            buttonAlbumSongZurueck.ForeColor = Color.Black;
             buttonAlbumSongZurueck.Location = new Point(6, 358);
             buttonAlbumSongZurueck.Name = "buttonAlbumSongZurueck";
             buttonAlbumSongZurueck.Size = new Size(114, 29);
@@ -248,7 +280,8 @@
             // 
             // buttonAlbumSpeichern
             // 
-            buttonAlbumSpeichern.Location = new Point(507, 358);
+            buttonAlbumSpeichern.ForeColor = Color.Black;
+            buttonAlbumSpeichern.Location = new Point(496, 358);
             buttonAlbumSpeichern.Name = "buttonAlbumSpeichern";
             buttonAlbumSpeichern.Size = new Size(114, 29);
             buttonAlbumSpeichern.TabIndex = 2;
@@ -267,13 +300,36 @@
             // 
             // dataGridViewTracklist
             // 
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(54, 57, 62);
+            dataGridViewTracklist.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewTracklist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewTracklist.BackgroundColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(40, 43, 48);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewTracklist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewTracklist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewTracklist.Columns.AddRange(new DataGridViewColumn[] { trackListTitel, trackListDauer, trackListBPM, trackListFormat });
-            dataGridViewTracklist.Location = new Point(6, 52);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 43, 48);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(114, 137, 218);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewTracklist.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewTracklist.EditMode = DataGridViewEditMode.EditOnEnter;
+            dataGridViewTracklist.GridColor = Color.FromArgb(30, 33, 36);
+            dataGridViewTracklist.Location = new Point(5, 52);
             dataGridViewTracklist.MultiSelect = false;
             dataGridViewTracklist.Name = "dataGridViewTracklist";
-            dataGridViewTracklist.Size = new Size(615, 292);
+            dataGridViewTracklist.RowHeadersVisible = false;
+            dataGridViewTracklist.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridViewTracklist.Size = new Size(604, 292);
             dataGridViewTracklist.TabIndex = 0;
             // 
             // trackListTitel
@@ -301,7 +357,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(655, 450);
+            ClientSize = new Size(648, 450);
             Controls.Add(tabControlAlbumNeu);
             Name = "NeuesAlbum";
             Text = "NeuesAlbum";
@@ -343,5 +399,6 @@
         private DataGridViewTextBoxColumn trackListDauer;
         private DataGridViewTextBoxColumn trackListBPM;
         private DataGridViewTextBoxColumn trackListFormat;
+        private System.Windows.Forms.Label labelAlbumNeuDragDrop;
     }
 }

@@ -15,6 +15,9 @@ namespace StreamingDB
 
     public partial class NeuesAlbum : Form
     {
+        public event Action<string> onAborted;
+        
+        
         private List<Artist> artists = new List<Artist>();
         private List<Album> alben = new List<Album>();
         private List<Genre> genres = new List<Genre>();
@@ -23,17 +26,25 @@ namespace StreamingDB
         private List<SongData> songDatas = new List<SongData>();
         private List<Featuring> featurings = new List<Featuring>();
 
+
         private Datenbank db = new Datenbank();
 
-        string imagePath = "";
+        private bool isSaved = false;
+
+        private string imagePath = "";
+        private string picDelPath;
+        private string testPath;
+
 
         public NeuesAlbum()
         {
             InitializeComponent();
             onLoad();
             hideTabsOnLoad();
+
+            this.FormClosing += new FormClosingEventHandler(onClosing);
         }
-        
+
         private void onLoad()
         {
             artists = db.getArtists();
@@ -66,6 +77,18 @@ namespace StreamingDB
             }
         }
 
+        private void onClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (!isSaved && pictureBoxAlbumNeu.Image != null)
+                {
+                    pictureBoxAlbumNeu.Image.Dispose();
+                    onAborted.Invoke(picDelPath);
+                }
+            }
+        }
+
         private void tabPageNeuesAlbum_DragDrop(object sender, DragEventArgs e)
         {
             try
@@ -75,17 +98,56 @@ namespace StreamingDB
                 if (files != null && files.Length > 0)
                 {
                     string sourceFilePath = files[0];
-                    string fileName = Path.GetFileNameWithoutExtension(sourceFilePath); // Nur den Dateinamen ohne Extension holen
-                    string destinationPath = Path.Combine(Application.StartupPath, "Images", fileName + ".png");
+                    string fileName = Path.GetFileName(sourceFilePath);
+                    string destinationPath = Path.Combine(Application.StartupPath, "Images", fileName);
                     imagePath = fileName;
 
+                    labelAlbumNeuDragDrop.Visible = false;
+                    pictureBoxAlbumNeu.BorderStyle = BorderStyle.None;
+
                     File.Copy(sourceFilePath, destinationPath, overwrite: true);
-                    pictureBoxAlbumNeu.Image = Image.FromFile(destinationPath);
+
+                    if (pictureBoxAlbumNeu.Image != null)
+                    {
+                        DialogResult result = MessageBox.Show("Wollen Sie das aktuelle Bild ersetzen?", "Bild ersetzen", MessageBoxButtons.YesNo);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            pictureBoxAlbumNeu.Image.Dispose();
+                            pictureBoxAlbumNeu.Image = Image.FromFile(destinationPath);
+                            try
+                            {
+                                if (File.Exists(destinationPath))
+                                {
+                                    File.Delete(picDelPath);
+                                    picDelPath = destinationPath;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Bild wurde nicht ersetzt");
+                                }
+                            }
+                            catch(Exception ex)
+                            {
+                                MessageBox.Show("Hier ist der Mistake");
+                            }
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bild wurde nicht ersetzt");
+                        }
+                    }
+                    else
+                    {
+                        pictureBoxAlbumNeu.Image = Image.FromFile(destinationPath);
+                        picDelPath = destinationPath;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Test Test " + ex.Message);
+                MessageBox.Show( ex.Message);
             }
         }
 
@@ -108,8 +170,10 @@ namespace StreamingDB
             comboBoxAlbumArtistNeu.Text = "";
             comboBoxAlbumGenreNeu.Text = "";
             comboBoxAlbumLabelNeu.Text = "";
-
-
+            
+            pictureBoxAlbumNeu.Image.Dispose();
+            onAborted.Invoke(imagePath);
+            
             this.Close();
         }
 
@@ -182,7 +246,7 @@ namespace StreamingDB
                     {
                         continue;
                     }
-                    
+
                     string songTitel = dataGridViewTracklist.Rows[i].Cells[0].Value.ToString();
 
                     Song song = new Song(
@@ -222,7 +286,7 @@ namespace StreamingDB
                         continue;
                     }
 
-                    
+
                     int songID = songs.Find(x => x.SongTitel == dataGridViewTracklist.Rows[i].Cells[0].Value.ToString()).SongID;
 
                     // Zeitwert aus der zweiten Spalte formatieren und parsen
@@ -239,19 +303,19 @@ namespace StreamingDB
                         throw new FormatException($"Ungültiges Zeitformat in Zeile {i + 1}: {rawTime}");
                     }
 
-                    
+
                     int bpm = Convert.ToInt32(dataGridViewTracklist.Rows[i].Cells[2].Value);
                     string format = dataGridViewTracklist.Rows[i].Cells[3].Value.ToString();
 
-                    
+
                     SongData songData = new SongData(
-                        dauer,  
-                        bpm,    
-                        format, 
-                        songID  
+                        dauer,
+                        bpm,
+                        format,
+                        songID
                     );
 
-                    
+
                     db.newSongData(songData);
                 }
             }
@@ -263,11 +327,11 @@ namespace StreamingDB
 
             try
             {
-                
+
                 int rowCount = dataGridViewTracklist.Rows.Count;
                 int cellCount = dataGridViewTracklist.Rows[0].Cells.Count;
 
-                for(int i = 0; i < rowCount; i++)
+                for (int i = 0; i < rowCount; i++)
                 {
                     //Leerzeilen überspringen
                     if (dataGridViewTracklist.Rows[i].IsNewRow)
@@ -279,9 +343,9 @@ namespace StreamingDB
                     {
                         continue;
                     }
-                    
+
                     int songID = songs.Find(x => x.SongTitel == dataGridViewTracklist.Rows[i].Cells[0].Value.ToString()).SongID;
-                    
+
                     Featuring feat = new Featuring(
                         songID,
                         artistID
@@ -298,6 +362,7 @@ namespace StreamingDB
             }
 
             MessageBox.Show("Album wurde erfolgreich erstellt");
+            isSaved = true;
             this.Close();
         }
 

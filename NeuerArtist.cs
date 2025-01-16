@@ -37,6 +37,8 @@ namespace StreamingDB
                     string imagePath = destinationPath;
 
                     File.Copy(sourceFilePath, destinationPath, overwrite: true);
+                    labelArtistNeuDragDropLabel.Visible = false;
+                    pictureBoxArtistNeu.BorderStyle = BorderStyle.None;
                     pictureBoxArtistNeu.Image = Image.FromFile(destinationPath);
                 }
             }

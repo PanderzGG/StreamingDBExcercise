@@ -31,6 +31,9 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             tabControlOverview = new TabControl();
             tabPageOverview = new TabPage();
             panel1 = new Panel();
@@ -56,7 +59,6 @@
             labelAlben = new System.Windows.Forms.Label();
             labelArtist = new System.Windows.Forms.Label();
             tabPageAlbumDetail = new TabPage();
-            textBoxAlbumInfo = new TextBox();
             labelAlbumGenre = new System.Windows.Forms.Label();
             dataGridViewAlbumSongList = new DataGridView();
             albumSongNummer = new DataGridViewTextBoxColumn();
@@ -93,7 +95,6 @@
             tabControlOverview.Controls.Add(tabPageAlbumDetail);
             tabControlOverview.Controls.Add(tabPageArtistDetail);
             tabControlOverview.Controls.Add(tabPageLabelDetail);
-            tabControlOverview.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControlOverview.Location = new Point(12, 12);
             tabControlOverview.Name = "tabControlOverview";
             tabControlOverview.SelectedIndex = 0;
@@ -140,10 +141,10 @@
             // 
             // buttonArtistAnzeigen
             // 
-            buttonArtistAnzeigen.BackColor = Color.FromArgb(114, 137, 218);
-            buttonArtistAnzeigen.FlatStyle = FlatStyle.Popup;
+            buttonArtistAnzeigen.BackColor = Color.FromArgb(40, 43, 48);
+            buttonArtistAnzeigen.FlatStyle = FlatStyle.System;
             buttonArtistAnzeigen.ForeColor = Color.White;
-            buttonArtistAnzeigen.Location = new Point(10, 70);
+            buttonArtistAnzeigen.Location = new Point(42, 3);
             buttonArtistAnzeigen.Name = "buttonArtistAnzeigen";
             buttonArtistAnzeigen.Size = new Size(160, 46);
             buttonArtistAnzeigen.TabIndex = 11;
@@ -154,7 +155,7 @@
             // buttonNewAlbum
             // 
             buttonNewAlbum.BackColor = Color.FromArgb(114, 137, 218);
-            buttonNewAlbum.FlatStyle = FlatStyle.Popup;
+            buttonNewAlbum.FlatStyle = FlatStyle.System;
             buttonNewAlbum.ForeColor = Color.White;
             buttonNewAlbum.Location = new Point(703, 102);
             buttonNewAlbum.Name = "buttonNewAlbum";
@@ -166,10 +167,10 @@
             // 
             // buttonAlbumAnzeigen
             // 
-            buttonAlbumAnzeigen.BackColor = Color.FromArgb(114, 137, 218);
-            buttonAlbumAnzeigen.FlatStyle = FlatStyle.Popup;
+            buttonAlbumAnzeigen.BackColor = Color.FromArgb(40, 43, 48);
+            buttonAlbumAnzeigen.FlatStyle = FlatStyle.System;
             buttonAlbumAnzeigen.ForeColor = Color.White;
-            buttonAlbumAnzeigen.Location = new Point(176, 70);
+            buttonAlbumAnzeigen.Location = new Point(42, 69);
             buttonAlbumAnzeigen.Name = "buttonAlbumAnzeigen";
             buttonAlbumAnzeigen.Size = new Size(160, 46);
             buttonAlbumAnzeigen.TabIndex = 10;
@@ -180,7 +181,7 @@
             // buttonNewArtist
             // 
             buttonNewArtist.BackColor = Color.FromArgb(114, 137, 218);
-            buttonNewArtist.FlatStyle = FlatStyle.Popup;
+            buttonNewArtist.FlatStyle = FlatStyle.System;
             buttonNewArtist.ForeColor = Color.White;
             buttonNewArtist.Location = new Point(703, 50);
             buttonNewArtist.Name = "buttonNewArtist";
@@ -192,10 +193,10 @@
             // 
             // buttonLabelDetail
             // 
-            buttonLabelDetail.BackColor = Color.FromArgb(114, 137, 218);
-            buttonLabelDetail.FlatStyle = FlatStyle.Popup;
+            buttonLabelDetail.BackColor = Color.FromArgb(40, 43, 48);
+            buttonLabelDetail.FlatStyle = FlatStyle.System;
             buttonLabelDetail.ForeColor = Color.White;
-            buttonLabelDetail.Location = new Point(342, 70);
+            buttonLabelDetail.Location = new Point(42, 135);
             buttonLabelDetail.Name = "buttonLabelDetail";
             buttonLabelDetail.Size = new Size(160, 46);
             buttonLabelDetail.TabIndex = 12;
@@ -251,6 +252,7 @@
             // 
             comboBoxAlben.BackColor = Color.FromArgb(54, 57, 62);
             comboBoxAlben.FlatStyle = FlatStyle.Flat;
+            comboBoxAlben.ForeColor = Color.White;
             comboBoxAlben.FormattingEnabled = true;
             comboBoxAlben.Location = new Point(128, 117);
             comboBoxAlben.Name = "comboBoxAlben";
@@ -262,6 +264,7 @@
             // 
             comboBoxArtist.BackColor = Color.FromArgb(54, 57, 62);
             comboBoxArtist.FlatStyle = FlatStyle.Flat;
+            comboBoxArtist.ForeColor = Color.White;
             comboBoxArtist.FormattingEnabled = true;
             comboBoxArtist.Location = new Point(128, 61);
             comboBoxArtist.Name = "comboBoxArtist";
@@ -293,9 +296,10 @@
             // 
             // dataGridViewAlbumTrackList
             // 
+            dataGridViewAlbumTrackList.AllowDrop = true;
             dataGridViewAlbumTrackList.AllowUserToAddRows = false;
             dataGridViewAlbumTrackList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(66, 69, 73);
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(54, 57, 62);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewAlbumTrackList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewAlbumTrackList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -304,26 +308,36 @@
             dataGridViewAlbumTrackList.BackgroundColor = Color.FromArgb(54, 57, 62);
             dataGridViewAlbumTrackList.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(114, 137, 218);
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(40, 43, 48);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(54, 57, 62);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridViewAlbumTrackList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewAlbumTrackList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAlbumTrackList.Columns.AddRange(new DataGridViewColumn[] { songNr, songTitel, songDauer, songFeat });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewAlbumTrackList.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewAlbumTrackList.Enabled = false;
-            dataGridViewAlbumTrackList.GridColor = Color.FromArgb(66, 69, 73);
-            dataGridViewAlbumTrackList.Location = new Point(294, 64);
+            dataGridViewAlbumTrackList.GridColor = Color.FromArgb(30, 33, 36);
+            dataGridViewAlbumTrackList.Location = new Point(281, 64);
             dataGridViewAlbumTrackList.MultiSelect = false;
             dataGridViewAlbumTrackList.Name = "dataGridViewAlbumTrackList";
             dataGridViewAlbumTrackList.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 43, 48);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(114, 137, 218);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewAlbumTrackList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewAlbumTrackList.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 43, 48);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(114, 137, 218);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(54, 57, 62);
+            dataGridViewAlbumTrackList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewAlbumTrackList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewAlbumTrackList.Size = new Size(591, 244);
             dataGridViewAlbumTrackList.TabIndex = 3;
             dataGridViewAlbumTrackList.SelectionChanged += dataGridViewAlbumTrackList_SelectionChanged;
@@ -387,36 +401,28 @@
             // 
             // tabPageAlbumDetail
             // 
-            tabPageAlbumDetail.Controls.Add(textBoxAlbumInfo);
+            tabPageAlbumDetail.BackColor = Color.FromArgb(40, 43, 48);
             tabPageAlbumDetail.Controls.Add(labelAlbumGenre);
             tabPageAlbumDetail.Controls.Add(dataGridViewAlbumSongList);
             tabPageAlbumDetail.Controls.Add(labelAlbumAlbum);
             tabPageAlbumDetail.Controls.Add(pictureBoxAlbum);
             tabPageAlbumDetail.Controls.Add(labelAlbumArtist);
+            tabPageAlbumDetail.Cursor = Cursors.No;
             tabPageAlbumDetail.Location = new Point(4, 24);
             tabPageAlbumDetail.Name = "tabPageAlbumDetail";
             tabPageAlbumDetail.Padding = new Padding(3);
             tabPageAlbumDetail.Size = new Size(891, 665);
             tabPageAlbumDetail.TabIndex = 1;
             tabPageAlbumDetail.Text = "Album";
-            tabPageAlbumDetail.UseVisualStyleBackColor = true;
-            // 
-            // textBoxAlbumInfo
-            // 
-            textBoxAlbumInfo.BackColor = SystemColors.Control;
-            textBoxAlbumInfo.Location = new Point(331, 93);
-            textBoxAlbumInfo.Multiline = true;
-            textBoxAlbumInfo.Name = "textBoxAlbumInfo";
-            textBoxAlbumInfo.ReadOnly = true;
-            textBoxAlbumInfo.Size = new Size(385, 102);
-            textBoxAlbumInfo.TabIndex = 5;
             // 
             // labelAlbumGenre
             // 
             labelAlbumGenre.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelAlbumGenre.AutoSize = true;
+            labelAlbumGenre.FlatStyle = FlatStyle.Flat;
             labelAlbumGenre.Font = new Font("Segoe UI", 9F);
-            labelAlbumGenre.Location = new Point(56, 96);
+            labelAlbumGenre.ForeColor = Color.White;
+            labelAlbumGenre.Location = new Point(127, 141);
             labelAlbumGenre.Name = "labelAlbumGenre";
             labelAlbumGenre.Size = new Size(110, 15);
             labelAlbumGenre.TabIndex = 4;
@@ -426,14 +432,28 @@
             // 
             dataGridViewAlbumSongList.AllowUserToAddRows = false;
             dataGridViewAlbumSongList.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(54, 57, 62);
+            dataGridViewAlbumSongList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewAlbumSongList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewAlbumSongList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewAlbumSongList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewAlbumSongList.BackgroundColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(40, 43, 48);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(54, 57, 62);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewAlbumSongList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewAlbumSongList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAlbumSongList.Columns.AddRange(new DataGridViewColumn[] { albumSongNummer, albumSongTitel, albumSongDauer, albumSongBPM, albumSongFormat });
-            dataGridViewAlbumSongList.Location = new Point(291, 217);
+            dataGridViewAlbumSongList.GridColor = Color.FromArgb(30, 33, 36);
+            dataGridViewAlbumSongList.Location = new Point(68, 280);
+            dataGridViewAlbumSongList.MultiSelect = false;
             dataGridViewAlbumSongList.Name = "dataGridViewAlbumSongList";
-            dataGridViewAlbumSongList.Size = new Size(583, 277);
+            dataGridViewAlbumSongList.ReadOnly = true;
+            dataGridViewAlbumSongList.Size = new Size(756, 359);
             dataGridViewAlbumSongList.TabIndex = 3;
             // 
             // albumSongNummer
@@ -470,8 +490,10 @@
             // 
             labelAlbumAlbum.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelAlbumAlbum.AutoSize = true;
+            labelAlbumAlbum.FlatStyle = FlatStyle.Flat;
             labelAlbumAlbum.Font = new Font("Segoe UI", 27F);
-            labelAlbumAlbum.Location = new Point(6, 7);
+            labelAlbumAlbum.ForeColor = Color.White;
+            labelAlbumAlbum.Location = new Point(116, 59);
             labelAlbumAlbum.Name = "labelAlbumAlbum";
             labelAlbumAlbum.Size = new Size(341, 48);
             labelAlbumAlbum.TabIndex = 2;
@@ -480,9 +502,9 @@
             // pictureBoxAlbum
             // 
             pictureBoxAlbum.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pictureBoxAlbum.Location = new Point(6, 217);
+            pictureBoxAlbum.Location = new Point(535, 15);
             pictureBoxAlbum.Name = "pictureBoxAlbum";
-            pictureBoxAlbum.Size = new Size(270, 216);
+            pictureBoxAlbum.Size = new Size(289, 249);
             pictureBoxAlbum.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAlbum.TabIndex = 1;
             pictureBoxAlbum.TabStop = false;
@@ -492,8 +514,10 @@
             // 
             labelAlbumArtist.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelAlbumArtist.AutoSize = true;
+            labelAlbumArtist.FlatStyle = FlatStyle.Flat;
             labelAlbumArtist.Font = new Font("Segoe UI", 18F);
-            labelAlbumArtist.Location = new Point(35, 55);
+            labelAlbumArtist.ForeColor = Color.White;
+            labelAlbumArtist.Location = new Point(122, 105);
             labelAlbumArtist.Name = "labelAlbumArtist";
             labelAlbumArtist.Size = new Size(214, 32);
             labelAlbumArtist.TabIndex = 0;
@@ -501,6 +525,7 @@
             // 
             // tabPageArtistDetail
             // 
+            tabPageArtistDetail.BackColor = Color.FromArgb(40, 43, 48);
             tabPageArtistDetail.Controls.Add(textBoxArtistInfo);
             tabPageArtistDetail.Controls.Add(pictureBoxArtist);
             tabPageArtistDetail.Controls.Add(labelArtistArtist);
@@ -510,10 +535,11 @@
             tabPageArtistDetail.Size = new Size(891, 665);
             tabPageArtistDetail.TabIndex = 2;
             tabPageArtistDetail.Text = "Artist";
-            tabPageArtistDetail.UseVisualStyleBackColor = true;
             // 
             // textBoxArtistInfo
             // 
+            textBoxArtistInfo.BackColor = Color.FromArgb(54, 57, 62);
+            textBoxArtistInfo.ForeColor = Color.White;
             textBoxArtistInfo.Location = new Point(88, 147);
             textBoxArtistInfo.Multiline = true;
             textBoxArtistInfo.Name = "textBoxArtistInfo";
@@ -534,6 +560,7 @@
             // 
             labelArtistArtist.AutoSize = true;
             labelArtistArtist.Font = new Font("Segoe UI", 27F);
+            labelArtistArtist.ForeColor = Color.White;
             labelArtistArtist.Location = new Point(88, 48);
             labelArtistArtist.Name = "labelArtistArtist";
             labelArtistArtist.Size = new Size(115, 48);
@@ -542,6 +569,7 @@
             // 
             // tabPageLabelDetail
             // 
+            tabPageLabelDetail.BackColor = Color.FromArgb(40, 43, 48);
             tabPageLabelDetail.Controls.Add(textBoxLabelInfo);
             tabPageLabelDetail.Controls.Add(labelLabelLabel);
             tabPageLabelDetail.Location = new Point(4, 24);
@@ -550,10 +578,10 @@
             tabPageLabelDetail.Size = new Size(891, 665);
             tabPageLabelDetail.TabIndex = 3;
             tabPageLabelDetail.Text = "Label";
-            tabPageLabelDetail.UseVisualStyleBackColor = true;
             // 
             // textBoxLabelInfo
             // 
+            textBoxLabelInfo.BackColor = Color.FromArgb(54, 57, 62);
             textBoxLabelInfo.Location = new Point(25, 116);
             textBoxLabelInfo.Multiline = true;
             textBoxLabelInfo.Name = "textBoxLabelInfo";
@@ -565,6 +593,7 @@
             // 
             labelLabelLabel.AutoSize = true;
             labelLabelLabel.Font = new Font("Segoe UI", 27F);
+            labelLabelLabel.ForeColor = Color.White;
             labelLabelLabel.Location = new Point(25, 20);
             labelLabelLabel.Name = "labelLabelLabel";
             labelLabelLabel.Size = new Size(115, 48);
@@ -575,7 +604,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 33, 36);
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(923, 717);
             Controls.Add(tabControlOverview);
             Name = "StreamDB";
@@ -633,7 +662,6 @@
         private DataGridViewTextBoxColumn albumSongBPM;
         private DataGridViewTextBoxColumn albumSongFormat;
         private System.Windows.Forms.Label labelAlbumGenre;
-        private TextBox textBoxAlbumInfo;
         private TextBox textBoxArtistInfo;
         private PictureBox pictureBoxArtist;
         private System.Windows.Forms.Label labelArtistArtist;
